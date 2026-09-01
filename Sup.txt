@@ -6,8 +6,9 @@
 # @TigerVpnChannel — TOP Free — sorted by median delay
 # every entry passed a real proxied request in all 3 runs.
 
+vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&security=none&type=tcp&headerType=http&host=zula.ir#%E2%AD%95%EF%B8%8F%20%D9%84%D8%B7%D9%81%D8%A7%20%D9%87%D8%B1%D8%B1%D9%88%D8%B2%20%D8%A2%D9%BE%D8%AF%DB%8C%D8%AA%20%DA%A9%D9%86%DB%8C%D8%AF%20%E2%AD%95%EF%B8%8F
 
-
+vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&security=none&type=tcp&headerType=http&host=zula.ir#%F0%9F%94%B9%20%F0%9F%9F%A3%20Version%3A.%2009%2F01%20.%3A%D9%88%D8%B1%DA%98%D9%86%20%F0%9F%9F%A3%20%F0%9F%94%B9
 
 
 ....2....
