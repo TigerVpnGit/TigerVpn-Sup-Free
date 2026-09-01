@@ -1,0 +1,38 @@
+#profile-title: @TigerVpnChannel — TOP Free
+#profile-update-interval: 1
+#subscription-userinfo: upload=0; download=0; total=0; expire=0
+#support-url: https://t.me/TigerVpnChannel
+#profile-web-page-url: https://github.com/Tiger/Free-v2ray-Configs
+# @TigerVpnChannel — TOP Free — sorted by median delay
+# every entry passed a real proxied request in all 3 runs.
+
+vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&type=tcp&headerType=http&host=zula.ir&security=none#%E2%AD%95%EF%B8%8F%20%D9%84%D8%B7%D9%81%D8%A7%20%D9%87%D8%B1%D8%B1%D9%88%D8%B2%20%D8%A2%D9%BE%D8%AF%DB%8C%D8%AA%20%DA%A9%D9%86%DB%8C%D8%AF%20%E2%AD%95%EF%B8%8F
+
+vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&type=tcp&headerType=http&host=zula.ir&security=none#%F0%9F%94%B9%20%F0%9F%9F%A3%20Version:.%2008/19%20.:%D9%88%D8%B1%DA%98%D9%86%20%F0%9F%9F%A3%20%F0%9F%94%B9
+
+....2....
+
+
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGRDNyQ3VPc3hPYXk=@15.235.75.71:8388?type=tcp#%F0%9F%94%B5%20@Tiger.Vpn%20
+trojan://humanity@188.114.97.7:443?type=ws&path=/assignment&security=tls&sni=www.ignitelimit.com&ech=ip.gs+udp://8.8.8.8#%D8%A7%DB%8C%D9%86%D8%B3%D8%AA%D8%A7%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpn%20
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGRDNyQ3VPc3hPYXk=@15.235.75.71:8388?type=tcp#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGRDNyQ3VPc3hPYXk=@15.235.75.71:8388?type=tcp#%F0%9F%9F%A2%20@TigerVpnChannel%20
+vless://b91abe1a-80ca-417b-998b-2b542661c16f@it.feywebsite.ir:8008?encryption=none&type=xhttp&mode=packet-up&path=/api/v1/stream&extra=%7B%22mode%22:%22packet-up%22,%22xPaddingBytes%22:%22100-1000%22%7D&security=reality&fp=chrome&sni=play.google.com&pbk=yGB6HD9OYiD77YWTH1YxcG9yIYkyeEYOEcHL-WnwQn8&sid=5f9a#%F0%9F%94%B5%20@Tiger.Vpn%20
+vless://b91abe1a-80ca-417b-998b-2b542661c16f@it.feywebsite.ir:8008?encryption=none&type=xhttp&mode=packet-up&path=/api/v1/stream&extra=%7B%22mode%22:%22packet-up%22,%22xPaddingBytes%22:%22100-1000%22%7D&security=reality&fp=chrome&sni=play.google.com&pbk=yGB6HD9OYiD77YWTH1YxcG9yIYkyeEYOEcHL-WnwQn8&sid=5f9a#%D8%A7%DB%8C%D9%86%D8%B3%D8%AA%D8%A7%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpn%20
+vless://cf39fab0-bb85-42cb-9945-2ad69d78e575@104.26.14.85:443?encryption=none&type=ws&host=rubifen.adaspoloandco.com&path=/GOrbEh&security=tls&fp=chrome&sni=rubifen.adaspoloandco.com#%F0%9F%87%A9%F0%9F%87%AA%20%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+trojan://humanity@104.16.174.117:443?type=ws&host=www.ignitelimit.com&path=/assignment&security=tls&sni=www.ignitelimit.com#%F0%9F%87%AB%F0%9F%87%B7%20%F0%9F%9F%A2%20@TigerVpnChannel%20
+
+.... 2 ....
+
+vless://d65cc14c-f53f-4fe2-b262-97856601319c@169.40.42.212:443?encryption=none&flow=xtls-rprx-vision&type=tcp&headerType=none&security=reality&sni=yahoo.com&pbk=e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg&sid=c39cc7310a#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+trojan://humanity@188.114.97.7:443?type=ws&path=/assignment&security=tls&sni=www.ignitelimit.com&ech=ip.gs+udp://8.8.8.8#%F0%9F%9F%A2%20@TigerVpnChannel%20
+trojan://6eb1e2aa-d6dd-c43a-23f8-37cf2883f952@rvg-production-0061.up.railway.app:443?type=xhttp&mode=packet-up&host=rvg-production-0061.up.railway.app&path=/txhttp-siz10/packet-up/6eb1e2aa-d6dd-c43a-23f8-37cf2883f952&security=tls&fp=chrome&sni=rvg-production-0061.up.railway.app&alpn=h2,http/1.1#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+hysteria2://t8t2qojzsykqazfu@assets.gateway-stream.com:52061?obfs=salamander&obfs-password=fd3olglr2bmimgje&sni=assets.gateway-stream.com&insecure=0#%F0%9F%9F%A2%20@TigerVpnChannel%20
+vless://fbb74aa8-b89a-4f20-9504-6b25aadf6681@132.243.223.88:443?encryption=none&flow=xtls-rprx-vision&type=tcp&headerType=none&host=v2rayNplus--v2rayNplus--v2rayNplus&security=reality&fp=firefox&sni=fin2.freeinternat.com&pbk=bZpzmeWiEJyJQy0W2hHc34Nr6BuFXj1UDd80Cbwh1Fk&sid=ff776ff77be48b88#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+hysteria2://t8t2qojzsykqazfu@assets.gateway-stream.com:52026?obfs=salamander&obfs-password=d6pv15sghiq1onts&sni=assets.gateway-stream.com&insecure=0#%F0%9F%9F%A2%20@TigerVpnChannel%20
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpuNGxmTEdwYWxmdUswVXho@20.166.49.191:443?type=tcp#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+vless://e5cc16a6-ea42-46b2-82ae-ad2157e1641b@188.114.99.0:443?encryption=none&type=ws&host=hhlfy.twiladaphne.ndjp.net&path=/sg-melbi&security=tls&sni=hhlfy.twiladaphne.ndjp.net#%F0%9F%9F%A2%20@TigerVpnChannel%20
+trojan://humanity@188.114.97.7:443?type=ws&path=/assignment&security=tls&sni=www.ignitelimit.com&ech=ip.gs+udp://8.8.8.8#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+vless://8b706aff-ca60-4632-9658-aeb5c0f48561@rusl2-e.ya-proxy.com:443?encryption=none&flow=xtls-rprx-vision&type=tcp&headerType=none&security=reality&fp=firefox&sni=eda.x5.ru&pbk=EBISh6QAVskJ_nvet-Qio9jS2yqxe9de6GMScYlbjhI&sid=226509f017e4c36d#%F0%9F%9F%A2%20@TigerVpnChannel%20
+vless://b91abe1a-80ca-417b-998b-2b542661c16f@57.131.42.58:8008?encryption=none&type=xhttp&mode=packet-up&path=/api/v1/stream&extra=%7B%22xPaddingBytes%22:%22100-1000%22,%22mode%22:%22packet-up%22%7D&security=reality&fp=chrome&sni=play.google.com&pbk=yGB6HD9OYiD77YWTH1YxcG9yIYkyeEYOEcHL-WnwQn8&sid=5f9a#%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%7C%7C%20%F0%9F%86%94%20@TigerVpnChannel%20
+vless://b91abe1a-80ca-417b-998b-2b542661c16f@it.feywebsite.ir:8008?encryption=none&type=xhttp&mode=packet-up&path=/api/v1/stream&extra=%7B%22xPaddingBytes%22:%22100-1000%22,%22mode%22:%22packet-up%22%7D&security=reality&fp=chrome&sni=play.google.com&pbk=yGB6HD9OYiD77YWTH1YxcG9yIYkyeEYOEcHL-WnwQn8&sid=5f9a#%F0%9F%9F%A2%20@TigerVpnChannel%20
