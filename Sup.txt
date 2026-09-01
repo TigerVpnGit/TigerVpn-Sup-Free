@@ -2,7 +2,7 @@
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/TigerVpnChannel
-#profile-web-page-url: https://github.com/Tiger/Free-v2ray-Configs
+#profile-web-page-url: https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/refs/heads/main/Sup.txt
 # @TigerVpnChannel — TOP Free — sorted by median delay
 # every entry passed a real proxied request in all 3 runs.
 
