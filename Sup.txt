@@ -1,6 +1,6 @@
 #profile-title: 🆔 @TigerVpnChannel
 #profile-update-interval: 1
-#subscription-userinfo:   total=0; expire=0
+#subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/TigerVpnChannel
 #profile-web-page-url: https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/refs/heads/main/Sup.txt
 # @TigerVpnChannel — TOP Free — sorted by median delay
