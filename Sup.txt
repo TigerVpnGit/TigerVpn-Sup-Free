@@ -20,7 +20,6 @@ vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&
 ----------|----------
 
 
-vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.203.69:51615?encryption=none&type=tcp&headerType=http&host=zula.ir&security=none#%F0%9F%94%B9%20%F0%9F%9F%A3%20Version%3A%202026/11/19%20.%3A%D9%88%D8%B1%DA%98%D9%86%20%F0%9F%9F%A3%20%F0%9F%94%B9
 
 |--1--|
 trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.156.65:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=learn.healthcarejobshubenhancemedicalprofessionalskillstoday.com#%F0%9F%87%BA%F0%9F%87%B8%201%20%7C%20United%20States%20%7C%20%F0%9F%9F%A2%20%40TigerVpnChannel
