@@ -1,0 +1,30 @@
+# TigerVpn-Sup-Free
+
+> **سابکریپشن رایگان و به‌روز برای دسترسی آزاد به اینترنت**
+
+[![Stars](https://img.shields.io/github/stars/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/commits/main)
+[![License](https://img.shields.io/github/license/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](LICENSE)
+
+## 📌 درباره پروژه
+این مخزن شامل سابکریپشن‌های رایگان و تست‌شده برای اتصال به اینترنت آزاد است. کانفیگ‌ها به‌صورت دوره‌ای به‌روزرسانی می‌شوند تا همیشه جدیدترین و پایدارترین اتصال را داشته باشید.
+
+## 🚀 شروع سریع
+1. فایل [`Sup.txt`](./Sup.txt) را باز کنید.
+2. محتوای آن را کپی کرده و در کلاینت مورد نظر خود (v2rayNG، NekoBox، V2RayN و ...) وارد کنید.
+3. اتصال را برقرار کنید.
+
+## ✨ ویژگی‌ها
+- ✅ به‌روزرسانی منظم و خودکار کانفیگ‌ها
+- ✅ تست‌شده برای پایداری و سرعت
+- ✅ سازگار با تمام کلاینت‌های محبوب V2Ray/XTLS
+- ✅ کاملاً رایگان و متن‌باز
+
+## 📁 ساختار مخزن
+- `Sup.txt` — فایل اصلی سابکریپشن (لینک‌های اتصال)
+
+## 🤝 مشارکت
+اگر کانفیگ مفیدی دارید یا باگی مشاهده کردید، از طریق Issues یا Pull Request اطلاع دهید.
+
+## 📄 مجوز
+این پروژه تحت مجوز MIT منتشر شده است. جزئیات در فایل [LICENSE](LICENSE) موجود است.
