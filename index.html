@@ -3,169 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اطلاعات سابسکریپشن | TigerVPN</title>
+    <title>راهنمای اتصال | TigerVPN</title>
     <style>
         :root {
-            --bg: #0d1117;
-            --card-bg: #161b22;
-            --border: #30363d;
-            --text: #e6edf3;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --green: #238636;
-            --green-hover: #2ea043;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --card-bg: rgba(15, 23, 42, 0.6);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            background: var(--bg-gradient);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
-            align-items: center;
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
         }
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 35px 30px;
-            max-width: 550px;
+        .app-container {
             width: 100%;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        .logo { font-size: 3rem; margin-bottom: 10px; }
-        h1 { color: var(--accent); font-size: 1.8rem; margin-bottom: 8px; }
-        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
-        .url-box {
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 25px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            word-break: break-all;
-            color: var(--accent);
-            cursor: pointer;
-            transition: border-color 0.2s;
-            position: relative;
-        }
-        .url-box:hover { border-color: var(--accent); }
-        .url-box .copy-hint {
-            display: block;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-            direction: ltr;
-        }
-        .btn-group { display: flex; flex-direction: column; gap: 12px; }
-        .btn {
-            display: inline-flex;
+        /* کارت شیشه‌ای بالای صفحه (وضعیت) */
+        .status-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .status-info { flex: 1; }
+        .status-title { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 5px; }
+        .status-value { font-size: 1.1rem; font-weight: bold; color: var(--accent); }
+        .status-details { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; }
+        .status-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success) 100%, transparent 0);
+            display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+        .status-ring::before {
+            content: '';
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: var(--bg-gradient);
+            border-radius: 50%;
+        }
+        .status-ring-text {
+            position: relative;
+            z-index: 1;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+        /* بخش‌های اصلی */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
             gap: 8px;
-            background-color: var(--green);
-            color: #fff;
-            padding: 14px 24px;
-            border-radius: 10px;
+        }
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        /* تب‌های دستگاه‌ها */
+        .device-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+        .device-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .tab-btn:hover { border-color: var(--accent); color: var(--text-main); }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #0f172a;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+        /* محتوای تب‌ها */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .guide-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 10px;
+        }
+        .guide-step {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        .step-number {
+            background: var(--accent);
+            color: #0f172a;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .step-text { color: var(--text-main); }
+        .step-text span { color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: 2px; }
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background-color 0.2s, transform 0.1s;
+            font-weight: bold;
+            font-size: 0.95rem;
             border: none;
             cursor: pointer;
-        }
-        .btn:hover { background-color: var(--green-hover); }
-        .btn:active { transform: scale(0.98); }
-        .btn.secondary {
-            background-color: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-        .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-        }
-        .footer a { color: var(--accent); text-decoration: none; }
-        .app-links { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .app-links a {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 14px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
             transition: all 0.2s;
+            margin-top: 10px;
         }
-        .app-links a:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-primary { background: var(--accent); color: #0f172a; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #16a34a; }
+        /* بخش کانفیگ و پشتیبانی */
+        .config-box {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .config-text {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            word-break: break-all;
+            direction: ltr;
+            text-align: left;
+        }
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        .copy-btn:hover { color: var(--accent); }
+        .support-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .support-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .support-btn:hover { background: #0077b5; }
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="logo">🐯</div>
-        <h1>TigerVPN</h1>
-        <p class="subtitle">سابسکریپشن رایگان و پرسرعت برای اینترنت آزاد</p>
-
-        <div class="url-box" id="subUrl" onclick="copyToClipboard(this)">
-            https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt
-            <span class="copy-hint">👆 برای کپی کلیک کنید</span>
-        </div>
-
-        <div class="btn-group">
-            <button class="btn" onclick="copyToClipboard(document.getElementById('subUrl'))">
-                📋 کپی لینک سابسکریپشن
-            </button>
-            <a href="v2rayng://install-sub?url=https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt" class="btn secondary">
-                📲 افزودن مستقیم به V2RayNG
-            </a>
-        </div>
-
-        <div class="footer">
-            <p>اپلیکیشن مورد نیاز خود را دانلود کنید:</p>
-            <div class="app-links">
-                <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">v2rayNG (Android)</a>
-                <a href="https://github.com/2dust/v2rayN/releases" target="_blank">V2RayN (Windows)</a>
-                <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank">Streisand (iOS)</a>
+    <div class="app-container">
+        <!-- کارت وضعیت -->
+        <div class="status-card">
+            <div class="status-info">
+                <div class="status-title">وضعیت اشتراک</div>
+                <div class="status-value">فعال</div>
+                <div class="status-details">ترافیک: 96.23 MB از 92.16 GB</div>
+                <div class="status-details">زمان باقی‌مانده: 29 روز</div>
             </div>
-            <p style="margin-top: 15px;">ساخته شده با ❤️ برای اینترنت آزاد</p>
+            <div class="status-ring">
+                <div class="status-ring-text">100%</div>
+            </div>
         </div>
+
+        <!-- بخش چطوری وصل بشم -->
+        <div>
+            <div class="section-title">🔌 چطوری وصل بشم؟</div>
+            <div class="section-subtitle">با استفاده از روش زیر به سادگی در دستگاه خود متصل شوید.</div>
+            
+            <div class="device-tabs">
+                <button class="tab-btn" onclick="openTab('android')" id="tab-android">📱 اندروید</button>
+                <button class="tab-btn" onclick="openTab('ios')" id="tab-ios">🍏 آیفون</button>
+                <button class="tab-btn" onclick="openTab('windows')" id="tab-windows">💻 ویندوز</button>
+                <button class="tab-btn" onclick="openTab('mac')" id="tab-mac">🖥️ مک</button>
+                <button class="tab-btn" onclick="openTab('linux')" id="tab-linux">🐧 لینوکس</button>
+            </div>
+
+            <!-- محتوای تب اندروید -->
+            <div id="content-android" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">اپلیکیشن v2rayNG را از گوگل پلی یا گیت‌هاب دانلود و نصب کنید.<span>لینک دانلود در پایین صفحه موجود است.</span></div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">لینک سابسکریپشن را کپی کنید.<span>از دکمه کپی در بخش پایین استفاده کنید.</span></div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">در اپلیکیشن، روی علامت + کلیک کرده و "Import config from Clipboard" را انتخاب کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">دکمه اتصال (V) را در پایین صفحه بزنید.</div>
+                    </div>
+                    <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" class="btn btn-primary">📥 دانلود v2rayNG</a>
+                </div>
+            </div>
+
+            <!-- محتوای تب آیفون -->
+            <div id="content-ios" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">اپلیکیشن Streisand یا Shadowrocket را از App Store نصب کنید.<span>برای Streisand نیاز به اپل آیدی غیرایرانی دارید.</span></div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">لینک سابسکریپشن را کپی کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">در اپلیکیشن، روی + کلیک کرده و "Add Subscription" را انتخاب کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">لینک را پیست کرده و ذخیره کنید. سپس روی کانفیگ کلیک کرده و Connect بزنید.</div>
+                    </div>
+                    <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-primary">📥 دانلود Streisand</a>
+                </div>
+            </div>
+
+            <!-- محتوای تب ویندوز -->
+            <div id="content-windows" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">اپلیکیشن V2RayN را از گیت‌هاب دانلود و از حالت فشرده خارج کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">لینک سابسکریپشن را کپی کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">در برنامه، از منوی بالا روی "Subscription" کلیک کرده و "Subscription Setting" را بزنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">لینک را در قسمت "Address" پیست کرده و OK بزنید. سپس Update Subscription را بزنید.</div>
+                    </div>
+                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="btn btn-primary">📥 دانلود V2RayN</a>
+                </div>
+            </div>
+
+            <!-- محتوای تب مک -->
+            <div id="content-mac" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">اپلیکیشن Streisand را از App Store نصب کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">لینک سابسکریپشن را کپی کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">در برنامه، روی + کلیک کرده و Add Subscription را بزنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">لینک را پیست کرده و ذخیره کنید. سپس Connect را بزنید.</div>
+                    </div>
+                    <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank" class="btn btn-primary">📥 دانلود Streisand</a>
+                </div>
+            </div>
+
+            <!-- محتوای تب لینوکس -->
+            <div id="content-linux" class="tab-content">
+                <div class="guide-card">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">از طریق ترمینال، بسته v2ray را نصب کنید یا از اپلیکیشن Nekoray استفاده کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">لینک سابسکریپشن را کپی کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">در Nekoray، از منوی "Program" گزینه "Add profile from clipboard" را انتخاب کنید.</div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">پس از افزودن، روی پروفایل کلیک راست کرده و "Start" را بزنید.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- بخش دسترسی کلی (کانفیگ) -->
+        <div>
+            <div class="section-title">🔗 دسترسی کلی</div>
+            <div class="section-subtitle">لینک سابسکریپشن خود را کپی کرده و در اپلیکیشن وارد کنید.</div>
+            <div class="config-box">
+                <div class="config-text" id="subLink">https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt</div>
+                <button class="copy-btn" onclick="copySubLink()">📋</button>
+            </div>
+            <button class="btn btn-success" onclick="copySubLink()">📋 کپی لینک سابسکریپشن</button>
+        </div>
+
+        <!-- بخش پشتیبانی -->
+        <div class="support-section">
+            <div class="section-title" style="justify-content: center;">💬 پشتیبانی تلگرام</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.</p>
+            <a href="https://t.me/YourTelegramID" target="_blank" class="support-btn">ارتباط با پشتیبانی</a>
+        </div>
+
+        <div class="footer-note">ساخته شده با ❤️ برای اینترنت آزاد</div>
     </div>
 
     <script>
-        function copyToClipboard(element) {
-            let text;
-            if (element.tagName === 'DIV') {
-                // اگر روی جعبه URL کلیک شده باشد، فقط متن داخل آن را کپی کن (بدون راهنما)
-                text = element.childNodes[0].textContent.trim();
-            } else {
-                // اگر دکمه کپی کلیک شده باشد، محتوای جعبه URL را کپی کن
-                const urlBox = document.getElementById('subUrl');
-                text = urlBox.childNodes[0].textContent.trim();
-            }
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = element.innerHTML;
-                if (element.tagName === 'BUTTON') {
-                    element.innerHTML = '✅ کپی شد!';
-                    setTimeout(() => { element.innerHTML = originalText; }, 2000);
-                } else {
-                    const hint = element.querySelector('.copy-hint');
-                    if (hint) hint.textContent = '✅ کپی شد!';
-                    setTimeout(() => { if (hint) hint.textContent = '👆 برای کپی کلیک کنید'; }, 2000);
-                }
-            }).catch(err => {
-                alert('خطا در کپی: ' + err);
-            });
+        // تابع برای باز کردن تب
+        function openTab(device) {
+            // مخفی کردن همه محتواها
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // حذف کلاس active از همه دکمه‌ها
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            // نمایش محتوای انتخاب شده
+            document.getElementById('content-' + device).classList.add('active');
+            // فعال کردن دکمه
+            document.getElementById('tab-' + device).classList.add('active');
         }
+
+        // تابع تشخیص خودکار سیستم‌عامل
+        function detectOS() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            
+            if (userAgent.includes('android')) {
+                return 'android';
+            } else if (userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
+                return 'ios';
+            } else if (userAgent.includes('win')) {
+                return 'windows';
+            } else if (userAgent.includes('mac')) {
+                return 'mac';
+            } else if (userAgent.includes('linux')) {
+                return 'linux';
+            }
+            return 'android'; // پیش‌فرض
+        }
+
+        // تابع کپی کردن لینک
+        function copySubLink() {
+            const linkText = document.getElementById('subLink').innerText;
+            navigator.clipboard.writeText(linkText).then(() => {
+                const btns = document.querySelectorAll('.copy-btn, .btn-success');
+                btns.forEach(btn => {
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '✅ کپی شد!';
+                    setTimeout(() => { btn.innerHTML = original; }, 2000);
+                });
+            }).catch(err => alert('خطا در کپی: ' + err));
+        }
+
+        // اجرای اولیه هنگام لود صفحه
+        window.onload = function() {
+            const detectedOS = detectOS();
+            openTab(detectedOS);
+        };
     </script>
 </body>
 </html>
