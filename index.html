@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,59 +9,50 @@
     <!-- کتابخانه تاریخ شمسی -->
     <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.1.5/dist/jalaali.min.js"></script>
     <style>
-        /* ==================== متغیرهای تم (الهام گرفته از تصویر شما) ==================== */
+        /* ==================== متغیرهای تم ==================== */
         :root {
             --font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
-            /* تم تاریک */
-            --bg-body: #0b1120; /* آبی بسیار تیره */
-            --bg-pattern: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            --bg-card: #111827; /* کمی روشن‌تر */
-            --bg-card-hover: #1e293b;
-            --border-color: #1e293b;
-            --border-active: #06b6d4;
+            /* تم تاریک (شب) */
+            --bg-body: #0a0f18;
+            --bg-pattern: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            --bg-card: #111827;
+            --bg-card-status: #1e293b; /* رنگ کارت وضعیت مشابه عکس */
+            --bg-card-hover: #1f2937;
+            --border-color: #2d3748;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            
-            /* رنگ‌های تاکیدی */
             --accent-cyan: #06b6d4;
-            --accent-cyan-glow: rgba(6, 182, 212, 0.2);
+            --accent-cyan-glow: rgba(6, 182, 212, 0.15);
             --accent-purple: #8b5cf6;
-            --accent-purple-glow: rgba(139, 92, 246, 0.2);
-            --accent-blue: #3b82f6;
+            --accent-purple-glow: rgba(139, 92, 246, 0.15);
+            --danger: #ef4444; /* رنگ قرمز برای دایره درصد */
             --success: #10b981;
-            
-            --radius-lg: 16px;
-            --radius-md: 12px;
-            --radius-sm: 8px;
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            --modal-overlay: rgba(0, 0, 0, 0.75);
         }
 
-        /* تم روشن */
+        /* تم روشن (روز) */
         [data-theme="light"] {
             --bg-body: #f1f5f9;
             --bg-pattern: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
             --bg-card: #ffffff;
-            --bg-card-hover: #f8fafc;
+            --bg-card-status: #f8fafc;
+            --bg-card-hover: #f1f5f9;
             --border-color: #cbd5e1;
-            --border-active: #0891b2;
             --text-primary: #0f172a;
             --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            
             --accent-cyan: #0891b2;
             --accent-cyan-glow: rgba(8, 145, 178, 0.15);
             --accent-purple: #7c3aed;
             --accent-purple-glow: rgba(124, 58, 237, 0.15);
-            --accent-blue: #2563eb;
+            --danger: #e11d48;
             --success: #059669;
-            
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --modal-overlay: rgba(0, 0, 0, 0.5);
         }
 
         /* ==================== ریست و پایه ==================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: var(--font-family);
             background-color: var(--bg-body);
@@ -75,363 +66,313 @@
             padding: 20px;
             transition: background-color 0.3s, color 0.3s;
         }
-
-        /* اسکرول‌بار سفارشی */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
-        /* ==================== کانتینر اصلی ==================== */
-        .app-container {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        /* ==================== کانتینر ==================== */
+        .app-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 20px; }
 
-        /* هدر (زبان، تم) */
+        /* هدر */
         .header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg-card);
-            padding: 12px 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-            flex-wrap: wrap;
-            gap: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-card); padding: 12px 20px; border-radius: 12px;
+            border: 1px solid var(--border-color); box-shadow: var(--shadow);
+            flex-wrap: wrap; gap: 10px;
         }
-        .header-actions { display: flex; align-items: center; gap: 12px; }
-        .lang-selector {
-            display: flex;
-            background: var(--bg-body);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        .lang-btn:hover { color: var(--text-primary); }
-        .lang-btn.active { background: var(--accent-cyan); color: #fff; font-weight: 700; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
         
+        /* منوی کشویی زبان */
+        .lang-select {
+            background: var(--bg-body); color: var(--text-primary);
+            border: 1px solid var(--border-color); padding: 8px 12px;
+            border-radius: 8px; font-family: inherit; font-size: 0.9rem;
+            cursor: pointer; outline: none; transition: border-color 0.2s;
+        }
+        .lang-select:hover, .lang-select:focus { border-color: var(--accent-cyan); }
+
+        /* دکمه تم */
         .theme-toggle {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
+            background: var(--bg-body); border: 1px solid var(--border-color);
+            color: var(--text-secondary); width: 38px; height: 38px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
         }
         .theme-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
 
-        /* ==================== کارت وضعیت اشتراک ==================== */
+        /* دکمه دریافت لینک (بالای صفحه) */
+        .top-action-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 14px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 12px;
+            cursor: pointer; box-shadow: 0 4px 15px var(--accent-purple-glow); transition: opacity 0.2s;
+        }
+        .top-action-btn:hover { opacity: 0.9; }
+
+        /* ==================== کارت وضعیت (شبیه عکس دوم) ==================== */
         .status-card {
-            background: var(--bg-card);
+            background: var(--bg-card-status);
             border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
-            align-items: center;
-            box-shadow: var(--shadow);
+            border-radius: 16px; padding: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: var(--shadow); gap: 15px;
         }
-        .status-info { display: flex; flex-direction: column; gap: 12px; }
-        .status-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 8px;
-        }
-        .status-row:last-child { border-bottom: none; padding-bottom: 0; }
-        .status-label { color: var(--text-secondary); font-size: 0.9rem; }
-        .status-value { font-weight: 700; color: var(--accent-cyan); }
+        .status-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .status-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-primary); }
+        .status-row span.label { color: var(--text-secondary); }
+        .status-row span.value { font-weight: bold; direction: ltr; }
+        
+        .status-chart-container { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 120px; }
         .status-ring {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: conic-gradient(var(--success) 100%, transparent 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 90px; height: 90px; border-radius: 50%;
+            background: conic-gradient(var(--danger) 0%, transparent 0);
+            display: flex; justify-content: center; align-items: center;
             position: relative;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
         .status-ring::before {
-            content: '';
-            position: absolute;
-            width: 64px;
-            height: 64px;
-            background: var(--bg-card);
-            border-radius: 50%;
+            content: ''; position: absolute; width: 74px; height: 74px;
+            background: var(--bg-card-status); border-radius: 50%;
         }
-        .status-ring-text { position: relative; z-index: 1; font-size: 1rem; font-weight: 800; }
+        .status-ring-text { position: relative; z-index: 1; font-size: 1.1rem; font-weight: 800; color: var(--danger); }
+        .status-badge {
+            background: var(--success); color: #fff; padding: 4px 12px;
+            border-radius: 20px; font-size: 0.75rem; font-weight: bold;
+        }
 
         /* ==================== آکاردئون ==================== */
         .accordion-group { display: flex; flex-direction: column; gap: 12px; }
         .accordion-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            transition: border-color 0.2s;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; overflow: hidden; transition: border-color 0.2s;
         }
         .accordion-item:hover { border-color: var(--accent-cyan); }
         .accordion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
-            cursor: pointer;
-            background: var(--bg-card);
-            user-select: none;
-            transition: background 0.2s;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 20px; cursor: pointer; background: var(--bg-card); user-select: none;
         }
         .accordion-header:hover { background: var(--bg-card-hover); }
-        .accordion-title { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1rem; }
-        .accordion-icon { display: flex; align-items: center; transition: transform 0.3s ease; }
+        .accordion-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; }
+        .accordion-icon { transition: transform 0.3s; }
         .accordion-item.active .accordion-icon { transform: rotate(180deg); }
-        
         .accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
         .accordion-item.active .accordion-body { grid-template-rows: 1fr; }
         .accordion-content { overflow: hidden; padding: 0 20px; transition: padding 0.3s ease; }
         .accordion-item.active .accordion-content { padding: 0 20px 20px 20px; }
 
-        /* ==================== تب‌های اپلیکیشن (مطابق تصویر) ==================== */
-        .app-tabs {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            scrollbar-width: thin;
-        }
+        /* تب‌ها و دکمه‌ها */
+        .app-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
         .app-tab-btn {
-            flex: 1;
-            min-width: 120px;
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-            position: relative;
+            flex: 1; min-width: 100px; background: var(--bg-body); border: 1px solid var(--border-color);
+            color: var(--text-secondary); padding: 10px; border-radius: 8px;
+            cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;
         }
-        .app-tab-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
-        .app-tab-btn.active {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            box-shadow: 0 0 15px var(--accent-cyan-glow);
-        }
-        .app-tab-btn.active::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: var(--accent-cyan);
-            border-radius: var(--radius-md) var(--radius-md) 0 0;
-        }
+        .app-tab-btn.active { background: var(--bg-card); border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
-        /* ==================== کارت‌های مراحل (مطابق تصویر) ==================== */
+        /* کارت‌های مراحل */
         .step-card {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            position: relative;
+            background: var(--bg-body); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 16px; margin-bottom: 12px;
+            display: flex; align-items: flex-start; gap: 15px;
         }
-        .step-card:last-child { margin-bottom: 0; }
-        
-        /* آیکون دایره‌ای سمت راست */
-        .step-icon-circle {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--accent-cyan);
-            background: var(--bg-card);
-        }
-        .step-card:nth-child(2) .step-icon-circle { color: var(--accent-purple); }
-        .step-card:nth-child(3) .step-icon-circle { color: var(--success); }
-
+        .step-icon { color: var(--accent-cyan); }
         .step-content { flex: 1; }
-        .step-title { font-size: 1.05rem; font-weight: bold; margin-bottom: 6px; text-align: left; }
-        .step-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; text-align: left; }
-
-        /* دکمه‌های داخل کارت */
-        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; }
+        .step-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
+        .step-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
+            border-radius: 6px; font-family: inherit; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; text-decoration: none; transition: all 0.2s;
         }
-        .btn-cyan {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--accent-cyan);
-            border-color: rgba(6, 182, 212, 0.3);
-        }
+        .btn-cyan { background: var(--accent-cyan-glow); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
         .btn-cyan:hover { background: var(--accent-cyan); color: #fff; }
-        
-        .btn-purple {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--accent-purple);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
+        .btn-purple { background: var(--accent-purple-glow); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
         .btn-purple:hover { background: var(--accent-purple); color: #fff; }
 
+        /* ==================== شبکه‌های اجتماعی ==================== */
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 10px; }
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px; border-radius: 10px; text-decoration: none;
+            font-weight: bold; font-size: 0.9rem; transition: transform 0.2s, opacity 0.2s;
+        }
+        .social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-telegram-bot { background: #0088cc; color: #fff; }
+        .btn-telegram-chan { background: #229ED9; color: #fff; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+
+        /* ==================== مودال (پنجره بارکد) ==================== */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--modal-overlay); display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 16px; width: 90%; max-width: 400px; padding: 20px;
+            box-shadow: var(--shadow); position: relative; transform: translateY(20px); transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color);
+        }
+        .modal-title { font-weight: bold; font-size: 1.1rem; }
+        .modal-close {
+            background: transparent; border: none; color: var(--text-secondary);
+            cursor: pointer; font-size: 1.5rem; line-height: 1; padding: 5px;
+        }
+        .modal-close:hover { color: var(--danger); }
+        .qr-container {
+            display: flex; justify-content: center; align-items: center;
+            background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px;
+        }
+        .qr-container img { width: 100%; max-width: 200px; height: auto; display: block; }
+        .modal-desc { text-align: center; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
+        .modal-copy-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 12px; background: var(--accent-cyan); color: #fff;
+            border: none; border-radius: 8px; font-family: inherit; font-size: 1rem;
+            font-weight: bold; cursor: pointer; transition: background 0.2s;
+        }
+        .modal-copy-btn:hover { background: #0891b2; }
+
         /* ==================== ریسپانسیو ==================== */
-        @media (max-width: 768px) {
-            .status-card { grid-template-columns: 1fr; text-align: center; }
-            .status-ring { margin: 0 auto; }
-            .header-bar { flex-direction: column; align-items: stretch; }
-            .header-actions { justify-content: center; }
-            .app-container { padding: 0 10px; }
+        @media (max-width: 600px) {
+            .status-card { flex-direction: column; text-align: center; }
+            .status-info { align-items: center; }
             .step-card { flex-direction: column; align-items: center; text-align: center; }
             .step-title, .step-desc { text-align: center; }
             .btn-group { justify-content: center; width: 100%; }
-            .btn { width: 100%; }
+            .btn { width: 100%; justify-content: center; }
         }
 
         /* آیکون‌ها */
         .icon { width: 20px; height: 20px; fill: currentColor; }
-        .icon-sm { width: 16px; height: 16px; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- هدر -->
+        
+        <!-- هدر: انتخاب زبان و تم -->
         <div class="header-bar">
-            <div class="lang-selector">
-                <button class="lang-btn active" onclick="setLanguage('fa')" data-lang="fa">فارسی</button>
-                <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">English</button>
-                <button class="lang-btn" onclick="setLanguage('ru')" data-lang="ru">Русский</button>
-            </div>
+            <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+                <option value="fa">فارسی</option>
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+            </select>
             <div class="header-actions">
-                <button class="theme-toggle" onclick="toggleTheme()" title="تغییر تم">
-                    <svg id="theme-icon" class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تغییر تم">
+                    <!-- آیکون توسط جاوااسکریپت پر می‌شود -->
                 </button>
             </div>
         </div>
 
-        <!-- کارت وضعیت -->
+        <!-- دکمه دریافت لینک (باز کردن مودال) -->
+        <button class="top-action-btn" onclick="openModal()">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+            دریافت لینک اشتراک (QR Code)
+        </button>
+
+        <!-- کارت وضعیت (شبیه عکس دوم) -->
         <div class="status-card">
             <div class="status-info">
                 <div class="status-row">
-                    <span class="status-label" data-i18n="status_traffic">ترافیک مصرفی</span>
-                    <span class="status-value" id="traffic-display">نامحدود</span>
+                    <span class="label" data-i18n="traffic">میزان استفاده:</span>
+                    <span class="value" id="traffic-val">نامحدود</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label" data-i18n="status_expiry">تاریخ انقضا</span>
-                    <span class="status-value" id="expiry-date">---</span>
+                    <span class="label" data-i18n="expiry_date">تاریخ پایان اشتراک:</span>
+                    <span class="value" id="expiry-val">---</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label" data-i18n="status_days_left">روزهای باقی‌مانده</span>
-                    <span class="status-value" id="days-left">---</span>
+                    <span class="label" data-i18n="days_left">روزهای باقی‌مانده:</span>
+                    <span class="value" id="days-val">---</span>
                 </div>
             </div>
-            <div class="status-ring">
-                <span class="status-ring-text" id="ring-percent">100%</span>
+            <div class="status-chart-container">
+                <div class="status-ring" id="status-ring">
+                    <span class="status-ring-text" id="ring-text">0%</span>
+                </div>
+                <span class="status-badge" data-i18n="active">فعال</span>
             </div>
         </div>
 
-        <!-- آکاردئون‌ها -->
+        <!-- آکاردئون راهنما -->
         <div class="accordion-group">
-            <!-- بخش راهنما -->
             <div class="accordion-item active" id="acc-guide">
                 <div class="accordion-header" onclick="toggleAccordion('acc-guide')">
                     <div class="accordion-title">
                         <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         <span data-i18n="guide_title">راهنمای اتصال</span>
                     </div>
-                    <div class="accordion-icon">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
-                    </div>
+                    <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        
-                        <!-- انتخاب سیستم‌عامل (اندروید/آیفون/...) -->
-                        <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center;">
-                            <!-- JS -->
-                        </div>
-
-                        <!-- انتخاب اپلیکیشن (v2rayNG, Happ, ...) -->
-                        <div class="app-tabs" id="app-tabs">
-                            <!-- JS -->
-                        </div>
-
-                        <!-- کارت‌های مراحل (نصب، افزودن، اتصال) -->
-                        <div id="guide-steps">
-                            <!-- JS -->
-                        </div>
-
+                        <!-- انتخاب سیستم‌عامل -->
+                        <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center;"></div>
+                        <!-- انتخاب اپلیکیشن -->
+                        <div class="app-tabs" id="app-tabs"></div>
+                        <!-- کارت‌های مراحل -->
+                        <div id="guide-steps"></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- بخش پشتیبانی -->
-            <div class="accordion-item" id="acc-support">
-                <div class="accordion-header" onclick="toggleAccordion('acc-support')">
+        <!-- بخش پشتیبانی و شبکه‌های اجتماعی -->
+        <div class="accordion-group">
+            <div class="accordion-item active" id="acc-social">
+                <div class="accordion-header" onclick="toggleAccordion('acc-social')">
                     <div class="accordion-title">
                         <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        <span data-i18n="support_title">پشتیبانی</span>
+                        <span data-i18n="support_title">پشتیبانی و ارتباط با ما</span>
                     </div>
-                    <div class="accordion-icon">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
-                    </div>
+                    <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <p class="step-desc" data-i18n="support_desc">در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.</p>
-                        <a href="https://t.me/YourTelegramID" target="_blank" class="btn btn-cyan" data-i18n="contact_support">ارتباط با پشتیبانی</a>
+                        <div class="social-grid">
+                            <a href="https://t.me/YourBuyBot" target="_blank" class="social-btn btn-telegram-bot">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
+                                <span data-i18n="buy_bot">خرید از ربات</span>
+                            </a>
+                            <a href="https://t.me/YourChannel" target="_blank" class="social-btn btn-telegram-chan">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
+                                <span data-i18n="channel">کانال اطلاع‌رسانی</span>
+                            </a>
+                            <a href="https://instagram.com/YourInstagram" target="_blank" class="social-btn btn-instagram">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                                <span data-i18n="instagram">اینستاگرام</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- مودال دریافت لینک و QR Code -->
+    <div class="modal-overlay" id="qrModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" data-i18n="modal_title">دریافت لینک</span>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="qr-container">
+                <!-- تصویر QR Code از API گوگل تولید می‌شود -->
+                <img id="qrImage" src="" alt="QR Code">
+            </div>
+            <p class="modal-desc" data-i18n="modal_desc">کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک زیر را کپی کرده و در کلاینت خود قرار دهید.</p>
+            <button class="modal-copy-btn" onclick="copySubLink(this)">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                <span data-i18n="copy_link">کپی لینک</span>
+            </button>
         </div>
     </div>
 
@@ -442,11 +383,10 @@
         // ==================== ۲. دیکشنری ترجمه‌ها ====================
         const translations = {
             fa: {
-                status_traffic: "ترافیک مصرفی", status_unlimited: "نامحدود",
-                status_expiry: "تاریخ انقضا", status_days_left: "روزهای باقی‌مانده",
-                guide_title: "راهنمای اتصال", support_title: "پشتیبانی",
-                support_desc: "در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.",
-                contact_support: "ارتباط با پشتیبانی",
+                traffic: "میزان استفاده:", unlimited: "نامحدود",
+                expiry_date: "تاریخ پایان اشتراک:", days_left: "روزهای باقی‌مانده:",
+                active: "فعال",
+                guide_title: "راهنمای اتصال", support_title: "پشتیبانی و ارتباط با ما",
                 os_android: "اندروید", os_ios: "آیفون", os_windows: "ویندوز", os_mac: "مک",
                 step1_title: "نصب برنامه", step2_title: "اضافه کردن اشتراک", step3_title: "متصل شوید و استفاده کنید",
                 step1_desc_android: "صفحه را در Google Play باز کنید و برنامه را نصب کنید. یا مستقیماً از فایل APK نصب کنید.",
@@ -454,17 +394,18 @@
                 step1_desc_win: "فایل برنامه را دانلود و از حالت فشرده خارج کنید.",
                 step2_desc: "برای افزودن اشتراک، روی دکمه زیر کلیک کنید تا به طور خودکار در برنامه اضافه شود.",
                 step3_desc: "برنامه را باز کنید و به سرور متصل شوید.",
-                download_apk: "دانلود APK", open_gplay: "باز کردن در Google Play",
-                add_sub: "افزودن اشتراک", 
+                download_apk: "دانلود APK", open_gplay: "Google Play",
                 btn_add: "اضافه کردن",
-                toast_opening: "در حال باز کردن برنامه..."
+                toast_opening: "در حال باز کردن برنامه...",
+                modal_title: "دریافت لینک", modal_desc: "کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک را کپی کنید.",
+                copy_link: "کپی لینک",
+                buy_bot: "خرید از ربات", channel: "کانال اطلاع‌رسانی", instagram: "اینستاگرام"
             },
             en: {
-                status_traffic: "Data Usage", status_unlimited: "Unlimited",
-                status_expiry: "Expiry Date", status_days_left: "Days Left",
-                guide_title: "Connection Guide", support_title: "Support",
-                support_desc: "If you encounter any issues, contact us on Telegram.",
-                contact_support: "Contact Support",
+                traffic: "Data Usage:", unlimited: "Unlimited",
+                expiry_date: "Expiry Date:", days_left: "Days Left:",
+                active: "Active",
+                guide_title: "Connection Guide", support_title: "Support & Social",
                 os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
                 step1_title: "Install App", step2_title: "Add Subscription", step3_title: "Connect & Use",
                 step1_desc_android: "Open the page in Google Play and install the app, or download the APK directly.",
@@ -472,45 +413,47 @@
                 step1_desc_win: "Download the app file and extract it.",
                 step2_desc: "To add the subscription, click the button below to automatically add it to the app.",
                 step3_desc: "Open the app and connect to the server.",
-                download_apk: "Download APK", open_gplay: "Open in Google Play",
-                add_sub: "Add Subscription", 
+                download_apk: "Download APK", open_gplay: "Google Play",
                 btn_add: "Add",
-                toast_opening: "Opening app..."
+                toast_opening: "Opening app...",
+                modal_title: "Get Link", modal_desc: "Scan the QR code above in your client. Or copy the link below.",
+                copy_link: "Copy Link",
+                buy_bot: "Buy from Bot", channel: "Channel", instagram: "Instagram"
             },
             ru: {
-                status_traffic: "Трафик", status_unlimited: "Безлимитный",
-                status_expiry: "Дата истечения", status_days_left: "Осталось дней",
-                guide_title: "Руководство", support_title: "Поддержка",
-                support_desc: "Если у вас возникли проблемы, свяжитесь с нами в Telegram.",
-                contact_support: "Связаться с поддержкой",
+                traffic: "Трафик:", unlimited: "Безлимитный",
+                expiry_date: "Дата истечения:", days_left: "Осталось дней:",
+                active: "Активен",
+                guide_title: "Руководство", support_title: "Поддержка и Соцсети",
                 os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
                 step1_title: "Установить", step2_title: "Добавить подписку", step3_title: "Подключиться",
                 step1_desc_android: "Откройте страницу в Google Play и установите приложение, или скачайте APK.",
                 step1_desc_ios: "Скачайте и установите приложение из App Store.",
                 step1_desc_win: "Скачайте файл приложения и распакуйте его.",
-                step2_desc: "Чтобы добавить подписку, нажмите кнопку ниже, чтобы автоматически добавить ее в приложение.",
+                step2_desc: "Чтобы добавить подписку, нажмите кнопку ниже.",
                 step3_desc: "Откройте приложение и подключитесь к серверу.",
-                download_apk: "Скачать APK", open_gplay: "Открыть в Google Play",
-                add_sub: "Добавить подписку", 
+                download_apk: "Скачать APK", open_gplay: "Google Play",
                 btn_add: "Добавить",
-                toast_opening: "Открытие приложения..."
+                toast_opening: "Открытие приложения...",
+                modal_title: "Получить ссылку", modal_desc: "Отсканируйте QR-код в клиенте. Или скопируйте ссылку.",
+                copy_link: "Копировать",
+                buy_bot: "Купить в боте", channel: "Канал", instagram: "Instagram"
             }
         };
 
-        // ==================== ۳. دیتابیس اپلیکیشن‌ها و Deep Link ها ====================
-        // scheme: لینک مستقیم برای باز شدن در برنامه و افزودن سابسکریپشن
+        // ==================== ۳. دیتابیس اپلیکیشن‌ها ====================
         const appsData = {
             android: [
                 { 
                     id: "v2rayng", name: "v2rayNG", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
+                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
                     market: "https://play.google.com/store/apps/details?id=com.v2ray.ang",
                     apk: "https://github.com/2dust/v2rayNG/releases",
                     scheme: "v2rayng://install-sub?url="
                 },
                 { 
                     id: "happ", name: "Happ", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
+                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
                     market: "https://play.google.com/store/apps/details?id=com.happproxy",
                     apk: "https://github.com/Happ-proxy/happ-android/releases",
                     scheme: "happ://add/"
@@ -519,32 +462,25 @@
             ios: [
                 { 
                     id: "streisand", name: "Streisand", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
                     market: "https://apps.apple.com/app/streisand/id6450534064",
                     apk: null,
                     scheme: "streisand://import/"
-                },
-                { 
-                    id: "shadowrocket", name: "Shadowrocket", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
-                    market: "https://apps.apple.com/app/shadowrocket/id932747118",
-                    apk: null,
-                    scheme: "shadowrocket://add/sub://" // نیاز به Base64 دارد که در JS هندل می‌کنیم
                 }
             ],
             windows: [
                 { 
                     id: "v2rayn", name: "v2rayN", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>',
+                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>',
                     market: "https://github.com/2dust/v2rayN/releases",
                     apk: "https://github.com/2dust/v2rayN/releases",
-                    scheme: "v2rayn://" // ویندوز پروتکل اختصاصی ساب ندارد، از کلیپ‌بورد استفاده می‌شود
+                    scheme: "v2rayn://" 
                 }
             ],
             mac: [
                 { 
                     id: "v2box", name: "V2Box", 
-                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
                     market: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690",
                     apk: null,
                     scheme: "v2box://import/"
@@ -560,16 +496,43 @@
 
         // ==================== ۵. توابع اصلی ====================
 
+        // تشخیص تم خودکار (سیستم‌عامل یا ساعت)
+        function initTheme() {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const hour = new Date().getHours();
+            const isNightTime = (hour >= 18 || hour < 6); // 6 شب تا 6 صبح
+
+            if (prefersDark || (!window.matchMedia && isNightTime)) {
+                currentTheme = 'dark';
+            } else {
+                currentTheme = 'light';
+            }
+            applyTheme();
+        }
+
+        // اعمال تم
+        function applyTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            const icon = document.getElementById('themeBtn');
+            if (currentTheme === 'dark') {
+                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>';
+            } else {
+                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>';
+            }
+        }
+
+        // تغییر دستی تم
+        function toggleTheme() {
+            currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+            applyTheme();
+        }
+
         // تغییر زبان
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
             document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
             
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) {
@@ -577,19 +540,10 @@
                 }
             });
 
-            updateDateInfo();
-            renderAppTabs(); // بازسازی تب‌ها برای ترجمه
-            renderSteps();   // بازسازی مراحل
-        }
-
-        // تغییر تم
-        function toggleTheme() {
-            currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            const icon = document.getElementById('theme-icon');
-            icon.innerHTML = (currentTheme === 'light') 
-                ? '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>'
-                : '<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>';
+            updateDateAndStatus(); // آپدیت تاریخ
+            renderOSSelector();
+            renderAppTabs();
+            renderSteps();
         }
 
         // باز/بسته کردن آکاردئون
@@ -607,7 +561,7 @@
             return 'android';
         }
 
-        // نمایش نوتیفیکیشن (Toast)
+        // نمایش پیام (Toast)
         function showToast(msg) {
             const toast = document.createElement('div');
             toast.style.cssText = `position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent-cyan); color:#fff; padding:10px 20px; border-radius:8px; z-index:9999; font-family:inherit; font-weight:bold; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s;`;
@@ -616,47 +570,69 @@
             setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
         }
 
-        // ==================== ۶. رندر کردن رابط کاربری ====================
+        // ==================== ۶. مودال و QR Code ====================
+        
+        function openModal() {
+            // تولید QR Code با استفاده از API رایگان
+            const qrImg = document.getElementById('qrImage');
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(SUB_LINK)}&color=06b6d4&bgcolor=ffffff`;
+            
+            document.getElementById('qrModal').classList.add('active');
+        }
 
-        // رندر انتخاب سیستم‌عامل
+        function closeModal() {
+            document.getElementById('qrModal').classList.remove('active');
+        }
+
+        function copySubLink(btnElement) {
+            navigator.clipboard.writeText(SUB_LINK).then(() => {
+                const originalText = btnElement.innerHTML;
+                btnElement.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> کپی شد!';
+                setTimeout(() => { btnElement.innerHTML = originalText; }, 2000);
+            });
+        }
+
+        // بستن مودال با کلیک بیرون از آن
+        document.getElementById('qrModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ==================== ۷. رندر کردن رابط کاربری ====================
+
         function renderOSSelector() {
             const container = document.getElementById('os-selector');
             if (!container) return;
             
             const osList = [
-                { id: 'android', labelKey: 'os_android', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z"/></svg>' },
-                { id: 'ios', labelKey: 'os_ios', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' },
-                { id: 'windows', labelKey: 'os_windows', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>' },
-                { id: 'mac', labelKey: 'os_mac', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' }
+                { id: 'android', labelKey: 'os_android', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z"/></svg>' },
+                { id: 'ios', labelKey: 'os_ios', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' },
+                { id: 'windows', labelKey: 'os_windows', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>' },
+                { id: 'mac', labelKey: 'os_mac', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' }
             ];
 
             container.innerHTML = osList.map(os => `
-                <button class="lang-btn ${os.id === currentOS ? 'active' : ''}" onclick="switchOS('${os.id}')" style="display:flex; align-items:center; gap:5px;">
+                <button class="app-tab-btn ${os.id === currentOS ? 'active' : ''}" onclick="switchOS('${os.id}')">
                     ${os.icon} ${translations[currentLang][os.labelKey]}
                 </button>
             `).join('');
         }
 
-        // رندر تب‌های اپلیکیشن
         function renderAppTabs() {
             const container = document.getElementById('app-tabs');
             if (!container) return;
 
             const apps = appsData[currentOS] || [];
-            // اگر اپ فعلی در این سیستم‌عامل نبود، اولین اپ را انتخاب کن
             if (!apps.find(a => a.id === currentApp)) {
                 currentApp = apps.length > 0 ? apps[0].id : null;
             }
 
             container.innerHTML = apps.map(app => `
                 <button class="app-tab-btn ${app.id === currentApp ? 'active' : ''}" onclick="switchApp('${app.id}')">
-                    ${app.icon}
-                    ${app.name}
+                    ${app.icon} ${app.name}
                 </button>
             `).join('');
         }
 
-        // رندر کردن کارت‌های ۳ گانه (نصب، اضافه کردن، اتصال)
         function renderSteps() {
             const container = document.getElementById('guide-steps');
             if (!container) return;
@@ -666,80 +642,46 @@
 
             const t = translations[currentLang];
             
-            // دکمه‌های نصب (برای اندروید دکمه گوگل پلی و APK، برای بقیه فقط دانلود)
             let installButtons = '';
             if (currentOS === 'android') {
                 installButtons = `
-                    <a href="${app.market}" target="_blank" class="btn btn-cyan">
-                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.69 8.12c.43.25.71.71.71 1.23s-.28.98-.71 1.23L3.84 21.85c-.5.24-.84-.24-.84-.85z"/></svg>
-                        ${t.open_gplay}
-                    </a>
-                    <a href="${app.apk}" target="_blank" class="btn btn-cyan">
-                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        ${t.download_apk}
-                    </a>
+                    <a href="${app.market}" target="_blank" class="btn btn-cyan">${t.open_gplay}</a>
+                    <a href="${app.apk}" target="_blank" class="btn btn-cyan">${t.download_apk}</a>
                 `;
             } else {
-                installButtons = `
-                    <a href="${app.market}" target="_blank" class="btn btn-cyan">
-                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        ${currentOS === 'ios' || currentOS === 'mac' ? 'App Store' : 'Download'}
-                    </a>
-                `;
+                installButtons = `<a href="${app.market}" target="_blank" class="btn btn-cyan">Download</a>`;
             }
 
-            // لینک دیپ لینک برای اضافه کردن مستقیم
-            // در اندروید و iOS این لینک اپ را باز می‌کند. برای دسکتاپ چون استاندارد نیست، فقط کپی می‌کنیم.
             let encodedSub = encodeURIComponent(SUB_LINK);
-            if (app.id === 'shadowrocket') {
-                // Shadowrocket نیاز به Base64 دارد
-                encodedSub = btoa(SUB_LINK);
-            }
             const deepLink = `${app.scheme}${encodedSub}`;
-            
-            // برای ویندوز و مک که دیپ لینک مستقیم ندارند، فقط کپی می‌کنیم
-            let addButtonAction = `onclick="triggerDeepLink('${deepLink}', '${app.scheme}')"`;
+            let addButtonAction = `onclick="triggerDeepLink('${deepLink}')"`;
             if (currentOS === 'windows') {
-                addButtonAction = `onclick="copyToClipboard('${SUB_LINK}')"`;
+                addButtonAction = `onclick="copySubLink(this)"`;
             }
 
             container.innerHTML = `
-                <!-- کارت ۱: نصب -->
                 <div class="step-card">
-                    <div class="step-icon-circle">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    </div>
+                    <div class="step-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></div>
                     <div class="step-content">
                         <div class="step-title">${t.step1_title}</div>
                         <div class="step-desc">${t['step1_desc_' + (currentOS === 'ios' ? 'ios' : currentOS === 'windows' || currentOS === 'mac' ? 'win' : 'android')]}</div>
-                        <div class="btn-group">
-                            ${installButtons}
-                        </div>
+                        <div class="btn-group">${installButtons}</div>
                     </div>
                 </div>
 
-                <!-- کارت ۲: اضافه کردن اشتراک -->
                 <div class="step-card">
-                    <div class="step-icon-circle">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-                    </div>
+                    <div class="step-icon" style="color:var(--accent-purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></div>
                     <div class="step-content">
                         <div class="step-title">${t.step2_title}</div>
                         <div class="step-desc">${t.step2_desc}</div>
                         <div class="btn-group">
-                            <button class="btn btn-purple" ${addButtonAction}>
-                                <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                                ${t.btn_add}
-                            </button>
+                            <button class="btn btn-purple" ${addButtonAction}>${t.btn_add}</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- کارت ۳: اتصال -->
                 <div class="step-card">
-                    <div class="step-icon-circle">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    </div>
+                    <div class="step-icon" style="color:var(--success)"><svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                     <div class="step-content">
                         <div class="step-title">${t.step3_title}</div>
                         <div class="step-desc">${t.step3_desc}</div>
@@ -748,9 +690,7 @@
             `;
         }
 
-        // ==================== ۷. اکشن‌ها ====================
-
-        // تغییر سیستم‌عامل
+        // ==================== ۸. اکشن‌ها ====================
         function switchOS(os) {
             currentOS = os;
             renderOSSelector();
@@ -758,69 +698,86 @@
             renderSteps();
         }
 
-        // تغییر اپلیکیشن
         function switchApp(appId) {
             currentApp = appId;
             renderAppTabs();
             renderSteps();
         }
 
-        // باز کردن دیپ لینک (افزودن مستقیم)
-        function triggerDeepLink(url, scheme) {
+        function triggerDeepLink(url) {
             showToast(translations[currentLang].toast_opening);
-            
-            // تلاش برای باز کردن لینک
             window.location.href = url;
-            
-            // Fallback: کپی کردن لینک اگر اپ باز نشد (برای دسکتاپ)
-            if (currentOS === 'windows' || currentOS === 'mac') {
-                copyToClipboard(SUB_LINK);
-            }
         }
 
-        // کپی به کلیپ‌بورد (برای دسکتاپ)
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast(translations[currentLang].toast_opening);
-            });
-        }
-
-        // ==================== ۸. تاریخ و روزهای باقی‌مانده ====================
-        function updateDateInfo() {
-            const startDate = new Date();
-            const expiryDate = new Date(startDate);
-            expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-
+        // ==================== ۹. محاسبه تاریخ (پایان سال) ====================
+        function updateDateAndStatus() {
             const now = new Date();
-            const timeDiff = expiryDate.getTime() - now.getTime();
-            const daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 3600 * 24)));
+            
+            // تبدیل تاریخ امروز به شمسی برای پیدا کردن سال جاری
+            let jNow = jalaali.toJalaali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+            let currentJYear = jNow.jy;
 
-            document.getElementById('days-left').textContent = daysLeft;
+            // آیا سال جاری کبیسه است؟ (برای تعیین 29 یا 30 اسفند)
+            let isLeap = jalaali.isLeapJalaaliYear(currentJYear);
+            let endDay = isLeap ? 30 : 29;
 
-            const expiryEl = document.getElementById('expiry-date');
+            // تبدیل پایان سال شمسی به میلادی
+            let endOfYearG = jalaali.toGregorian(currentJYear, 12, endDay);
+            let expiryDate = new Date(endOfYearG.gy, endOfYearG.gm - 1, endOfYearG.gd, 23, 59, 59);
+            
+            // تاریخ شروع سال شمسی جاری
+            let startOfYearG = jalaali.toGregorian(currentJYear, 1, 1);
+            let startDate = new Date(startOfYearG.gy, startOfYearG.gm - 1, startOfYearG.gd);
+
+            // محاسبات روزها
+            const timeDiffExpiry = expiryDate.getTime() - now.getTime();
+            let daysLeft = Math.ceil(timeDiffExpiry / (1000 * 3600 * 24));
+            if (daysLeft < 0) daysLeft = 0;
+
+            const timeDiffTotal = expiryDate.getTime() - startDate.getTime();
+            const timeDiffPassed = now.getTime() - startDate.getTime();
+            
+            // درصد سپری شده (اگر تاریخ امروز قبل از شروع سال باشد، 0 است)
+            let percentPassed = Math.floor((timeDiffPassed / timeDiffTotal) * 100);
+            if (percentPassed < 0) percentPassed = 0;
+            if (percentPassed > 100) percentPassed = 100;
+
+            // نمایش تاریخ انقضا
+            const expiryEl = document.getElementById('expiry-val');
             if (currentLang === 'fa') {
-                const jDate = jalaali.toJalaali(expiryDate.getFullYear(), expiryDate.getMonth() + 1, expiryDate.getDate());
-                expiryEl.textContent = `${jDate.jy}/${jDate.jm}/${jDate.jd}`;
+                expiryEl.textContent = `${currentJYear}/12/${endDay}`;
             } else {
                 const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
                 expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', options);
             }
 
-            document.getElementById('traffic-display').textContent = translations[currentLang].status_unlimited;
+            // نمایش روزهای باقی‌مانده
+            document.getElementById('days-val').textContent = daysLeft;
+
+            // نمایش حجم
+            document.getElementById('traffic-val').textContent = translations[currentLang].unlimited;
+
+            // آپدیت دایره درصد
+            document.getElementById('ring-text').textContent = `${percentPassed}%`;
+            const ring = document.getElementById('status-ring');
+            // استفاده از رنگ قرمز برای دایره مشابه عکس
+            ring.style.background = `conic-gradient(var(--danger) ${percentPassed}%, transparent 0)`;
         }
 
-        // ==================== ۹. شروع برنامه ====================
+        // ==================== ۱۰. شروع برنامه ====================
         window.onload = function() {
+            initTheme(); // تنظیم تم شب/روز
             currentOS = detectOS();
             
-            // تنظیم پیش‌فرض اپ بر اساس سیستم‌عامل
             if (appsData[currentOS] && appsData[currentOS].length > 0) {
                 currentApp = appsData[currentOS][0].id;
             }
 
-            setLanguage('fa');
+            setLanguage('fa'); // تنظیم زبان پیش‌فرض
+            
             renderOSSelector();
-            updateDateInfo();
+            updateDateAndStatus(); // محاسبه تاریخ پایان سال
+            
             document.getElementById('acc-guide').classList.add('active');
         };
     </script>
