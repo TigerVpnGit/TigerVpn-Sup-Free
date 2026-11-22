@@ -4,64 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>راهنمای اتصال | TigerVPN</title>
-    <!-- استفاده از فونت Vazirmatn برای زیبایی -->
+    <!-- فونت وزیرمتن -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <!-- کتابخانه تاریخ شمسی -->
     <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.1.5/dist/jalaali.min.js"></script>
     <style>
-        /* ==================== متغیرهای تم ==================== */
+        /* ==================== متغیرهای تم (الهام گرفته از تصویر شما) ==================== */
         :root {
             --font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
-            --bg-body: #0a0e17;
-            --bg-card: #111827;
-            --bg-card-hover: #1f2937;
-            --bg-accordion: #1a2235;
-            --border-color: #2d3748;
-            --text-primary: #f1f5f9;
+            /* تم تاریک */
+            --bg-body: #0b1120; /* آبی بسیار تیره */
+            --bg-pattern: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            --bg-card: #111827; /* کمی روشن‌تر */
+            --bg-card-hover: #1e293b;
+            --border-color: #1e293b;
+            --border-active: #06b6d4;
+            --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --accent: #2dd4bf; /* رنگ فیروزه‌ای تصویر */
-            --accent-glow: rgba(45, 212, 191, 0.2);
-            --accent-hover: #14b8a6;
+            
+            /* رنگ‌های تاکیدی */
+            --accent-cyan: #06b6d4;
+            --accent-cyan-glow: rgba(6, 182, 212, 0.2);
+            --accent-purple: #8b5cf6;
+            --accent-purple-glow: rgba(139, 92, 246, 0.2);
+            --accent-blue: #3b82f6;
             --success: #10b981;
-            --danger: #ef4444;
-            --scroll-track: #1e293b;
-            --scroll-thumb: #475569;
-            --radius-lg: 20px;
+            
+            --radius-lg: 16px;
             --radius-md: 12px;
             --radius-sm: 8px;
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
         }
 
+        /* تم روشن */
         [data-theme="light"] {
-            --bg-body: #f8fafc;
+            --bg-body: #f1f5f9;
+            --bg-pattern: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
             --bg-card: #ffffff;
-            --bg-card-hover: #f1f5f9;
-            --bg-accordion: #f8fafc;
-            --border-color: #e2e8f0;
+            --bg-card-hover: #f8fafc;
+            --border-color: #cbd5e1;
+            --border-active: #0891b2;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #94a3b8;
-            --accent: #0d9488;
-            --accent-glow: rgba(13, 148, 136, 0.15);
-            --accent-hover: #0f766e;
-            --scroll-track: #e2e8f0;
-            --scroll-thumb: #cbd5e1;
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            
+            --accent-cyan: #0891b2;
+            --accent-cyan-glow: rgba(8, 145, 178, 0.15);
+            --accent-purple: #7c3aed;
+            --accent-purple-glow: rgba(124, 58, 237, 0.15);
+            --accent-blue: #2563eb;
+            --success: #059669;
+            
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         /* ==================== ریست و پایه ==================== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: var(--font-family);
             background-color: var(--bg-body);
+            background-image: var(--bg-pattern);
+            background-size: 40px 40px;
             color: var(--text-primary);
-            line-height: 1.7;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -70,21 +77,10 @@
         }
 
         /* اسکرول‌بار سفارشی */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--scroll-track);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--scroll-thumb);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
         /* ==================== کانتینر اصلی ==================== */
         .app-container {
@@ -92,7 +88,7 @@
             max-width: 800px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         /* هدر (زبان، تم) */
@@ -108,11 +104,7 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .header-actions { display: flex; align-items: center; gap: 12px; }
         .lang-selector {
             display: flex;
             background: var(--bg-body);
@@ -124,18 +116,15 @@
             background: transparent;
             border: none;
             color: var(--text-secondary);
-            padding: 8px 12px;
+            padding: 8px 14px;
             cursor: pointer;
             font-family: inherit;
             font-size: 0.85rem;
             transition: all 0.2s;
         }
         .lang-btn:hover { color: var(--text-primary); }
-        .lang-btn.active {
-            background: var(--accent);
-            color: #0f172a;
-            font-weight: 700;
-        }
+        .lang-btn.active { background: var(--accent-cyan); color: #fff; font-weight: 700; }
+        
         .theme-toggle {
             background: var(--bg-body);
             border: 1px solid var(--border-color);
@@ -149,10 +138,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .theme-toggle:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+        .theme-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
 
         /* ==================== کارت وضعیت اشتراک ==================== */
         .status-card {
@@ -166,21 +152,17 @@
             align-items: center;
             box-shadow: var(--shadow);
         }
-        .status-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .status-info { display: flex; flex-direction: column; gap: 12px; }
         .status-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 8px;
             border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 8px;
         }
         .status-row:last-child { border-bottom: none; padding-bottom: 0; }
         .status-label { color: var(--text-secondary); font-size: 0.9rem; }
-        .status-value { font-weight: 700; color: var(--accent); }
+        .status-value { font-weight: 700; color: var(--accent-cyan); }
         .status-ring {
             width: 80px;
             height: 80px;
@@ -190,7 +172,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
         .status-ring::before {
             content: '';
@@ -200,31 +182,18 @@
             background: var(--bg-card);
             border-radius: 50%;
         }
-        .status-ring-text {
-            position: relative;
-            z-index: 1;
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
+        .status-ring-text { position: relative; z-index: 1; font-size: 1rem; font-weight: 800; }
 
-        /* ==================== آکاردئون‌ها ==================== */
-        .accordion-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        /* ==================== آکاردئون ==================== */
+        .accordion-group { display: flex; flex-direction: column; gap: 12px; }
         .accordion-item {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s;
         }
-        .accordion-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+        .accordion-item:hover { border-color: var(--accent-cyan); }
         .accordion-header {
             display: flex;
             justify-content: space-between;
@@ -236,63 +205,95 @@
             transition: background 0.2s;
         }
         .accordion-header:hover { background: var(--bg-card-hover); }
-        .accordion-title {
+        .accordion-title { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1rem; }
+        .accordion-icon { display: flex; align-items: center; transition: transform 0.3s ease; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        
+        .accordion-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+        .accordion-item.active .accordion-body { grid-template-rows: 1fr; }
+        .accordion-content { overflow: hidden; padding: 0 20px; transition: padding 0.3s ease; }
+        .accordion-item.active .accordion-content { padding: 0 20px 20px 20px; }
+
+        /* ==================== تب‌های اپلیکیشن (مطابق تصویر) ==================== */
+        .app-tabs {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1rem;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            scrollbar-width: thin;
         }
-        .accordion-icon {
-            width: 24px;
-            height: 24px;
+        .app-tab-btn {
+            flex: 1;
+            min-width: 120px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
-            transition: transform 0.3s ease;
+            gap: 8px;
+            transition: all 0.2s;
+            position: relative;
         }
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
+        .app-tab-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .app-tab-btn.active {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-cyan-glow);
         }
-        .accordion-body {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s ease;
-        }
-        .accordion-item.active .accordion-body {
-            grid-template-rows: 1fr;
-        }
-        .accordion-content {
-            overflow: hidden;
-            padding: 0 20px;
-            transition: padding 0.3s ease;
-        }
-        .accordion-item.active .accordion-content {
-            padding: 0 20px 20px 20px;
+        .app-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent-cyan);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
         }
 
-        /* ==================== محتوای داخل آکاردئون ==================== */
-        .guide-card {
-            background: var(--bg-accordion);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            margin-bottom: 12px;
+        /* ==================== کارت‌های مراحل (مطابق تصویر) ==================== */
+        .step-card {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            position: relative;
         }
-        .guide-card:last-child { margin-bottom: 0; }
-        .guide-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-primary);
+        .step-card:last-child { margin-bottom: 0; }
+        
+        /* آیکون دایره‌ای سمت راست */
+        .step-icon-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent-cyan);
+            background: var(--bg-card);
         }
-        .guide-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
+        .step-card:nth-child(2) .step-icon-circle { color: var(--accent-purple); }
+        .step-card:nth-child(3) .step-icon-circle { color: var(--success); }
 
-        /* دکمه‌ها */
+        .step-content { flex: 1; }
+        .step-title { font-size: 1.05rem; font-weight: bold; margin-bottom: 6px; text-align: left; }
+        .step-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; text-align: left; }
+
+        /* دکمه‌های داخل کارت */
+        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -307,141 +308,43 @@
             border: 1px solid transparent;
             cursor: pointer;
             transition: all 0.2s;
-            white-space: nowrap;
         }
-        .btn-primary {
-            background: var(--accent);
-            color: #0f172a;
+        .btn-cyan {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-cyan);
+            border-color: rgba(6, 182, 212, 0.3);
         }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .btn-outline {
-            background: transparent;
-            border-color: var(--border-color);
-            color: var(--text-primary);
+        .btn-cyan:hover { background: var(--accent-cyan); color: #fff; }
+        
+        .btn-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-purple);
+            border-color: rgba(139, 92, 246, 0.3);
         }
-        .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        /* جدول اپلیکیشن‌ها */
-        .app-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 0.85rem;
-        }
-        .app-table th, .app-table td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .app-table th {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
-        .app-table tr:last-child td { border-bottom: none; }
-        .app-table a { color: var(--accent); text-decoration: none; }
-        .app-table a:hover { text-decoration: underline; }
-
-        /* کد QR و لینک سابسکریپشن */
-        .config-box {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 15px;
-            margin-top: 10px;
-        }
-        .config-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 10px 15px;
-        }
-        .config-text {
-            flex: 1;
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-            word-break: break-all;
-            direction: ltr;
-            text-align: left;
-        }
-        .copy-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 4px;
-            transition: color 0.2s;
-        }
-        .copy-btn:hover { color: var(--accent); }
+        .btn-purple:hover { background: var(--accent-purple); color: #fff; }
 
         /* ==================== ریسپانسیو ==================== */
         @media (max-width: 768px) {
-            .status-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .status-ring {
-                margin: 0 auto;
-            }
-            .header-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .header-actions {
-                justify-content: center;
-            }
-            .app-container {
-                padding: 0 10px;
-            }
-        }
-        @media (max-width: 480px) {
+            .status-card { grid-template-columns: 1fr; text-align: center; }
+            .status-ring { margin: 0 auto; }
+            .header-bar { flex-direction: column; align-items: stretch; }
+            .header-actions { justify-content: center; }
+            .app-container { padding: 0 10px; }
+            .step-card { flex-direction: column; align-items: center; text-align: center; }
+            .step-title, .step-desc { text-align: center; }
+            .btn-group { justify-content: center; width: 100%; }
             .btn { width: 100%; }
-            .btn-group { flex-direction: column; }
-            .config-row { flex-direction: column; align-items: stretch; }
-            .copy-btn { align-self: flex-end; }
         }
 
-        /* ==================== انیمیشن ==================== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        /* آیکون‌ها (SVG) */
-        .icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
+        /* آیکون‌ها */
+        .icon { width: 20px; height: 20px; fill: currentColor; }
         .icon-sm { width: 16px; height: 16px; }
     </style>
 </head>
 <body>
 
-    <div class="app-container fade-in">
-
-        <!-- هدر: انتخاب زبان و تم -->
+    <div class="app-container">
+        <!-- هدر -->
         <div class="header-bar">
             <div class="lang-selector">
                 <button class="lang-btn active" onclick="setLanguage('fa')" data-lang="fa">فارسی</button>
@@ -455,7 +358,7 @@
             </div>
         </div>
 
-        <!-- کارت وضعیت اشتراک -->
+        <!-- کارت وضعیت -->
         <div class="status-card">
             <div class="status-info">
                 <div class="status-row">
@@ -478,8 +381,7 @@
 
         <!-- آکاردئون‌ها -->
         <div class="accordion-group">
-
-            <!-- بخش ۱: راهنمای اتصال (تشخیص خودکار دستگاه) -->
+            <!-- بخش راهنما -->
             <div class="accordion-item active" id="acc-guide">
                 <div class="accordion-header" onclick="toggleAccordion('acc-guide')">
                     <div class="accordion-title">
@@ -492,51 +394,31 @@
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <!-- تب‌های دستگاه‌ها -->
-                        <div class="device-tabs" id="device-tabs" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:10px; margin-bottom:10px;">
-                            <!-- دکمه‌ها توسط جاوااسکریپت پر می‌شوند -->
+                        
+                        <!-- انتخاب سیستم‌عامل (اندروید/آیفون/...) -->
+                        <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center;">
+                            <!-- JS -->
                         </div>
 
-                        <!-- محتوای راهنما (توسط جاوااسکریپت پر می‌شود) -->
-                        <div id="guide-content">
-                            <!-- محتوای پویا -->
+                        <!-- انتخاب اپلیکیشن (v2rayNG, Happ, ...) -->
+                        <div class="app-tabs" id="app-tabs">
+                            <!-- JS -->
                         </div>
+
+                        <!-- کارت‌های مراحل (نصب، افزودن، اتصال) -->
+                        <div id="guide-steps">
+                            <!-- JS -->
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            <!-- بخش ۲: دسترسی کلی (لینک سابسکریپشن) -->
-            <div class="accordion-item" id="acc-access">
-                <div class="accordion-header" onclick="toggleAccordion('acc-access')">
-                    <div class="accordion-title">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-                        <span data-i18n="access_title">دسترسی کلی</span>
-                    </div>
-                    <div class="accordion-icon">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
-                    </div>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-content">
-                        <p class="guide-desc" data-i18n="access_desc">لینک سابسکریپشن خود را کپی کرده و در اپلیکیشن وارد کنید.</p>
-                        <div class="config-box">
-                            <div class="config-row">
-                                <span class="config-text" id="sub-link-text">https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt</span>
-                                <button class="copy-btn" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)" title="کپی">
-                                    <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                                </button>
-                            </div>
-                            <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)" data-i18n="copy_link">کپی لینک سابسکریپشن</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- بخش ۳: پشتیبانی -->
+            <!-- بخش پشتیبانی -->
             <div class="accordion-item" id="acc-support">
                 <div class="accordion-header" onclick="toggleAccordion('acc-support')">
                     <div class="accordion-title">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                         <span data-i18n="support_title">پشتیبانی</span>
                     </div>
                     <div class="accordion-icon">
@@ -545,192 +427,138 @@
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <p class="guide-desc" data-i18n="support_desc">در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.</p>
-                        <a href="https://t.me/YourTelegramID" target="_blank" class="btn btn-primary" data-i18n="contact_support">ارتباط با پشتیبانی</a>
+                        <p class="step-desc" data-i18n="support_desc">در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.</p>
+                        <a href="https://t.me/YourTelegramID" target="_blank" class="btn btn-cyan" data-i18n="contact_support">ارتباط با پشتیبانی</a>
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <div style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; margin-bottom: 20px;">
-            <span data-i18n="footer_text">ساخته شده با ❤️ برای اینترنت آزاد</span>
-        </div>
-
     </div>
 
     <script>
-        // ==================== ۱. داده‌های چندزبانه ====================
+        // ==================== ۱. تنظیمات کلی ====================
+        const SUB_LINK = "https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt";
+        
+        // ==================== ۲. دیکشنری ترجمه‌ها ====================
         const translations = {
             fa: {
-                status_traffic: "ترافیک مصرفی",
-                status_unlimited: "نامحدود",
-                status_expiry: "تاریخ انقضا",
-                status_days_left: "روزهای باقی‌مانده",
-                guide_title: "راهنمای اتصال",
-                access_title: "دسترسی کلی",
-                access_desc: "لینک سابسکریپشن خود را کپی کرده و در اپلیکیشن وارد کنید.",
-                copy_link: "کپی لینک سابسکریپشن",
-                support_title: "پشتیبانی",
+                status_traffic: "ترافیک مصرفی", status_unlimited: "نامحدود",
+                status_expiry: "تاریخ انقضا", status_days_left: "روزهای باقی‌مانده",
+                guide_title: "راهنمای اتصال", support_title: "پشتیبانی",
                 support_desc: "در صورت بروز هرگونه مشکل، با ما در تلگرام در ارتباط باشید.",
                 contact_support: "ارتباط با پشتیبانی",
-                footer_text: "ساخته شده با ❤️ برای اینترنت آزاد",
-                os_android: "اندروید",
-                os_ios: "آیفون / آیپد",
-                os_windows: "ویندوز",
-                os_mac: "مک",
-                os_linux: "لینوکس",
-                download: "دانلود",
-                install_app: "نصب برنامه",
-                add_sub: "افزودن اشتراک",
-                connect_use: "اتصال و استفاده",
-                copy_success: "کپی شد!",
-                // متن‌های راهنما
-                android_step1: "اپلیکیشن v2rayNG یا Hiddify را نصب کنید.",
-                android_step2: "لینک سابسکریپشن را کپی کنید.",
-                android_step3: "در اپلیکیشن، از منوی + گزینه Import from Clipboard را بزنید.",
-                android_step4: "دکمه اتصال را فعال کنید.",
-                ios_step1: "اپلیکیشن Streisand یا Shadowrocket را نصب کنید.",
-                ios_step2: "لینک سابسکریپشن را کپی کنید.",
-                ios_step3: "در اپلیکیشن + را زده و Add Subscription را انتخاب کنید.",
-                ios_step4: "لینک را پیست کرده و متصل شوید.",
-                windows_step1: "اپلیکیشن V2RayN یا Hiddify را دانلود کنید.",
-                windows_step2: "از منوی Subscription گزینه Subscription Setting را بزنید.",
-                windows_step3: "لینک را وارد کرده و Update Subscription را بزنید.",
-                windows_step4: "روی سرور کلیک راست کرده و Set as Active System Proxy را بزنید.",
-                mac_step1: "اپلیکیشن Streisand یا V2Box را نصب کنید.",
-                mac_step2: "لینک سابسکریپشن را کپی کنید.",
-                mac_step3: "در اپلیکیشن + را زده و Add Subscription را انتخاب کنید.",
-                mac_step4: "لینک را پیست کرده و متصل شوید.",
-                linux_step1: "اپلیکیشن Nekoray یا v2rayA را نصب کنید.",
-                linux_step2: "لینک سابسکریپشن را کپی کنید.",
-                linux_step3: "در برنامه Add profile from clipboard را بزنید.",
-                linux_step4: "پروفایل را انتخاب و Start کنید."
+                os_android: "اندروید", os_ios: "آیفون", os_windows: "ویندوز", os_mac: "مک",
+                step1_title: "نصب برنامه", step2_title: "اضافه کردن اشتراک", step3_title: "متصل شوید و استفاده کنید",
+                step1_desc_android: "صفحه را در Google Play باز کنید و برنامه را نصب کنید. یا مستقیماً از فایل APK نصب کنید.",
+                step1_desc_ios: "برنامه را از App Store دانلود و نصب کنید.",
+                step1_desc_win: "فایل برنامه را دانلود و از حالت فشرده خارج کنید.",
+                step2_desc: "برای افزودن اشتراک، روی دکمه زیر کلیک کنید تا به طور خودکار در برنامه اضافه شود.",
+                step3_desc: "برنامه را باز کنید و به سرور متصل شوید.",
+                download_apk: "دانلود APK", open_gplay: "باز کردن در Google Play",
+                add_sub: "افزودن اشتراک", 
+                btn_add: "اضافه کردن",
+                toast_opening: "در حال باز کردن برنامه..."
             },
             en: {
-                status_traffic: "Data Usage",
-                status_unlimited: "Unlimited",
-                status_expiry: "Expiry Date",
-                status_days_left: "Days Left",
-                guide_title: "Connection Guide",
-                access_title: "General Access",
-                access_desc: "Copy your subscription link and paste it into the app.",
-                copy_link: "Copy Subscription Link",
-                support_title: "Support",
+                status_traffic: "Data Usage", status_unlimited: "Unlimited",
+                status_expiry: "Expiry Date", status_days_left: "Days Left",
+                guide_title: "Connection Guide", support_title: "Support",
                 support_desc: "If you encounter any issues, contact us on Telegram.",
                 contact_support: "Contact Support",
-                footer_text: "Made with ❤️ for Free Internet",
-                os_android: "Android",
-                os_ios: "iOS",
-                os_windows: "Windows",
-                os_mac: "macOS",
-                os_linux: "Linux",
-                download: "Download",
-                install_app: "Install App",
-                add_sub: "Add Subscription",
-                connect_use: "Connect & Use",
-                copy_success: "Copied!",
-                android_step1: "Install v2rayNG or Hiddify app.",
-                android_step2: "Copy the subscription link.",
-                android_step3: "In the app, tap + and select Import from Clipboard.",
-                android_step4: "Tap the connect button.",
-                ios_step1: "Install Streisand or Shadowrocket app.",
-                ios_step2: "Copy the subscription link.",
-                ios_step3: "In the app, tap + and select Add Subscription.",
-                ios_step4: "Paste the link and connect.",
-                windows_step1: "Download V2RayN or Hiddify app.",
-                windows_step2: "Go to Subscription > Subscription Setting.",
-                windows_step3: "Paste the link and click Update Subscription.",
-                windows_step4: "Right-click a server and set as Active System Proxy.",
-                mac_step1: "Install Streisand or V2Box app.",
-                mac_step2: "Copy the subscription link.",
-                mac_step3: "In the app, tap + and select Add Subscription.",
-                mac_step4: "Paste the link and connect.",
-                linux_step1: "Install Nekoray or v2rayA app.",
-                linux_step2: "Copy the subscription link.",
-                linux_step3: "In the app, click Add profile from clipboard.",
-                linux_step4: "Select a profile and click Start."
+                os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
+                step1_title: "Install App", step2_title: "Add Subscription", step3_title: "Connect & Use",
+                step1_desc_android: "Open the page in Google Play and install the app, or download the APK directly.",
+                step1_desc_ios: "Download and install the app from the App Store.",
+                step1_desc_win: "Download the app file and extract it.",
+                step2_desc: "To add the subscription, click the button below to automatically add it to the app.",
+                step3_desc: "Open the app and connect to the server.",
+                download_apk: "Download APK", open_gplay: "Open in Google Play",
+                add_sub: "Add Subscription", 
+                btn_add: "Add",
+                toast_opening: "Opening app..."
             },
             ru: {
-                status_traffic: "Трафик",
-                status_unlimited: "Безлимитный",
-                status_expiry: "Дата истечения",
-                status_days_left: "Осталось дней",
-                guide_title: "Руководство по подключению",
-                access_title: "Общий доступ",
-                access_desc: "Скопируйте ссылку подписки и вставьте её в приложение.",
-                copy_link: "Копировать ссылку подписки",
-                support_title: "Поддержка",
+                status_traffic: "Трафик", status_unlimited: "Безлимитный",
+                status_expiry: "Дата истечения", status_days_left: "Осталось дней",
+                guide_title: "Руководство", support_title: "Поддержка",
                 support_desc: "Если у вас возникли проблемы, свяжитесь с нами в Telegram.",
                 contact_support: "Связаться с поддержкой",
-                footer_text: "Сделано с ❤️ для свободного интернета",
-                os_android: "Android",
-                os_ios: "iOS",
-                os_windows: "Windows",
-                os_mac: "macOS",
-                os_linux: "Linux",
-                download: "Скачать",
-                install_app: "Установить приложение",
-                add_sub: "Добавить подписку",
-                connect_use: "Подключиться и использовать",
-                copy_success: "Скопировано!",
-                android_step1: "Установите приложение v2rayNG или Hiddify.",
-                android_step2: "Скопируйте ссылку подписки.",
-                android_step3: "В приложении нажмите + и выберите Import from Clipboard.",
-                android_step4: "Нажмите кнопку подключения.",
-                ios_step1: "Установите приложение Streisand или Shadowrocket.",
-                ios_step2: "Скопируйте ссылку подписки.",
-                ios_step3: "В приложении нажмите + и выберите Add Subscription.",
-                ios_step4: "Вставьте ссылку и подключитесь.",
-                windows_step1: "Скачайте приложение V2RayN или Hiddify.",
-                windows_step2: "Перейдите в Subscription > Subscription Setting.",
-                windows_step3: "Вставьте ссылку и нажмите Update Subscription.",
-                windows_step4: "Щелкните правой кнопкой мыши по серверу и выберите Set as Active System Proxy.",
-                mac_step1: "Установите приложение Streisand или V2Box.",
-                mac_step2: "Скопируйте ссылку подписки.",
-                mac_step3: "В приложении нажмите + и выберите Add Subscription.",
-                mac_step4: "Вставьте ссылку и подключитесь.",
-                linux_step1: "Установите приложение Nekoray или v2rayA.",
-                linux_step2: "Скопируйте ссылку подписки.",
-                linux_step3: "В приложении нажмите Add profile from clipboard.",
-                linux_step4: "Выберите профиль и нажмите Start."
+                os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
+                step1_title: "Установить", step2_title: "Добавить подписку", step3_title: "Подключиться",
+                step1_desc_android: "Откройте страницу в Google Play и установите приложение, или скачайте APK.",
+                step1_desc_ios: "Скачайте и установите приложение из App Store.",
+                step1_desc_win: "Скачайте файл приложения и распакуйте его.",
+                step2_desc: "Чтобы добавить подписку, нажмите кнопку ниже, чтобы автоматически добавить ее в приложение.",
+                step3_desc: "Откройте приложение и подключитесь к серверу.",
+                download_apk: "Скачать APK", open_gplay: "Открыть в Google Play",
+                add_sub: "Добавить подписку", 
+                btn_add: "Добавить",
+                toast_opening: "Открытие приложения..."
             }
         };
 
-        // ==================== ۲. داده‌های اپلیکیشن‌ها به تفکیک سیستم‌عامل ====================
+        // ==================== ۳. دیتابیس اپلیکیشن‌ها و Deep Link ها ====================
+        // scheme: لینک مستقیم برای باز شدن در برنامه و افزودن سابسکریپشن
         const appsData = {
             android: [
-                { name: "v2rayNG", url: "https://github.com/2dust/v2rayNG/releases", type: "github" },
-                { name: "Hiddify", url: "https://github.com/hiddify/hiddify-next/releases", type: "github" },
-                { name: "NekoBox", url: "https://github.com/MatsuriDayo/NekoBoxForAndroid/releases", type: "github" }
+                { 
+                    id: "v2rayng", name: "v2rayNG", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
+                    market: "https://play.google.com/store/apps/details?id=com.v2ray.ang",
+                    apk: "https://github.com/2dust/v2rayNG/releases",
+                    scheme: "v2rayng://install-sub?url="
+                },
+                { 
+                    id: "happ", name: "Happ", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
+                    market: "https://play.google.com/store/apps/details?id=com.happproxy",
+                    apk: "https://github.com/Happ-proxy/happ-android/releases",
+                    scheme: "happ://add/"
+                }
             ],
             ios: [
-                { name: "Streisand", url: "https://apps.apple.com/app/streisand/id6450534064", type: "appstore" },
-                { name: "Shadowrocket", url: "https://apps.apple.com/app/shadowrocket/id932747118", type: "appstore" },
-                { name: "V2Box", url: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690", type: "appstore" }
+                { 
+                    id: "streisand", name: "Streisand", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+                    market: "https://apps.apple.com/app/streisand/id6450534064",
+                    apk: null,
+                    scheme: "streisand://import/"
+                },
+                { 
+                    id: "shadowrocket", name: "Shadowrocket", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+                    market: "https://apps.apple.com/app/shadowrocket/id932747118",
+                    apk: null,
+                    scheme: "shadowrocket://add/sub://" // نیاز به Base64 دارد که در JS هندل می‌کنیم
+                }
             ],
             windows: [
-                { name: "V2RayN", url: "https://github.com/2dust/v2rayN/releases", type: "github" },
-                { name: "Hiddify", url: "https://github.com/hiddify/hiddify-next/releases", type: "github" },
-                { name: "Nekoray", url: "https://github.com/MatsuriDayo/nekoray/releases", type: "github" }
+                { 
+                    id: "v2rayn", name: "v2rayN", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>',
+                    market: "https://github.com/2dust/v2rayN/releases",
+                    apk: "https://github.com/2dust/v2rayN/releases",
+                    scheme: "v2rayn://" // ویندوز پروتکل اختصاصی ساب ندارد، از کلیپ‌بورد استفاده می‌شود
+                }
             ],
             mac: [
-                { name: "Streisand", url: "https://apps.apple.com/app/streisand/id6450534064", type: "appstore" },
-                { name: "V2Box", url: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690", type: "appstore" },
-                { name: "Nekoray", url: "https://github.com/MatsuriDayo/nekoray/releases", type: "github" }
-            ],
-            linux: [
-                { name: "Nekoray", url: "https://github.com/MatsuriDayo/nekoray/releases", type: "github" },
-                { name: "v2rayA", url: "https://github.com/v2rayA/v2rayA/releases", type: "github" }
+                { 
+                    id: "v2box", name: "V2Box", 
+                    icon: '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+                    market: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690",
+                    apk: null,
+                    scheme: "v2box://import/"
+                }
             ]
         };
 
-        // ==================== ۳. وضعیت برنامه ====================
+        // ==================== ۴. وضعیت برنامه ====================
         let currentLang = 'fa';
         let currentTheme = 'dark';
         let currentOS = 'android';
+        let currentApp = 'v2rayng';
 
-        // ==================== ۴. توابع ====================
+        // ==================== ۵. توابع اصلی ====================
 
         // تغییر زبان
         function setLanguage(lang) {
@@ -738,12 +566,10 @@
             document.documentElement.lang = lang;
             document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
             
-            // به‌روزرسانی دکمه‌های زبان
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
 
-            // به‌روزرسانی متن‌ها
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) {
@@ -751,44 +577,24 @@
                 }
             });
 
-            // به‌روزرسانی محتوای پویا
-            updateGuideContent();
             updateDateInfo();
+            renderAppTabs(); // بازسازی تب‌ها برای ترجمه
+            renderSteps();   // بازسازی مراحل
         }
 
         // تغییر تم
         function toggleTheme() {
             currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', currentTheme);
-            
             const icon = document.getElementById('theme-icon');
-            if (currentTheme === 'light') {
-                icon.innerHTML = '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>';
-            } else {
-                icon.innerHTML = '<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>';
-            }
+            icon.innerHTML = (currentTheme === 'light') 
+                ? '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>'
+                : '<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>';
         }
 
         // باز/بسته کردن آکاردئون
         function toggleAccordion(id) {
-            const item = document.getElementById(id);
-            if (item) {
-                item.classList.toggle('active');
-            }
-        }
-
-        // کپی کردن متن
-        function copyText(text, btnElement) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btnElement.innerHTML;
-                const successText = translations[currentLang].copy_success || 'Copied!';
-                btnElement.innerHTML = `<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> ${successText}`;
-                setTimeout(() => {
-                    btnElement.innerHTML = originalText;
-                }, 2000);
-            }).catch(err => {
-                console.error('Copy failed: ', err);
-            });
+            document.getElementById(id).classList.toggle('active');
         }
 
         // تشخیص سیستم‌عامل
@@ -798,199 +604,223 @@
             if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('ipod')) return 'ios';
             if (ua.includes('win')) return 'windows';
             if (ua.includes('mac')) return 'mac';
-            if (ua.includes('linux')) return 'linux';
-            return 'android'; // پیش‌فرض
+            return 'android';
         }
 
-        // به‌روزرسانی محتوای راهنما بر اساس سیستم‌عامل و زبان
-        function updateGuideContent() {
-            const tabsContainer = document.getElementById('device-tabs');
-            const contentContainer = document.getElementById('guide-content');
-            if (!tabsContainer || !contentContainer) return;
+        // نمایش نوتیفیکیشن (Toast)
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent-cyan); color:#fff; padding:10px 20px; border-radius:8px; z-index:9999; font-family:inherit; font-weight:bold; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s;`;
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+        }
 
-            // ساخت تب‌ها
+        // ==================== ۶. رندر کردن رابط کاربری ====================
+
+        // رندر انتخاب سیستم‌عامل
+        function renderOSSelector() {
+            const container = document.getElementById('os-selector');
+            if (!container) return;
+            
             const osList = [
-                { id: 'android', labelKey: 'os_android', icon: 'M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z' },
-                { id: 'ios', labelKey: 'os_ios', icon: 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z' },
-                { id: 'windows', labelKey: 'os_windows', icon: 'M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z' },
-                { id: 'mac', labelKey: 'os_mac', icon: 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z' },
-                { id: 'linux', labelKey: 'os_linux', icon: 'M12.5 2C9.5 2 7 4.5 7 7.5c0 1.5.5 3 1.5 4L4 21h16l-4.5-9.5c1-1 1.5-2.5 1.5-4C17 4.5 14.5 2 12.5 2z' }
+                { id: 'android', labelKey: 'os_android', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z"/></svg>' },
+                { id: 'ios', labelKey: 'os_ios', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' },
+                { id: 'windows', labelKey: 'os_windows', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>' },
+                { id: 'mac', labelKey: 'os_mac', icon: '<svg class="icon-sm" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' }
             ];
 
-            tabsContainer.innerHTML = osList.map(os => {
-                const isActive = os.id === currentOS ? 'active' : '';
-                const label = translations[currentLang][os.labelKey] || os.id;
-                return `<button class="lang-btn ${isActive}" onclick="switchOS('${os.id}')" style="white-space:nowrap;">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24" style="margin-left:4px;"><path d="${os.icon}"/></svg>
-                    ${label}
-                </button>`;
-            }).join('');
+            container.innerHTML = osList.map(os => `
+                <button class="lang-btn ${os.id === currentOS ? 'active' : ''}" onclick="switchOS('${os.id}')" style="display:flex; align-items:center; gap:5px;">
+                    ${os.icon} ${translations[currentLang][os.labelKey]}
+                </button>
+            `).join('');
+        }
 
-            // ساخت محتوای راهنما
+        // رندر تب‌های اپلیکیشن
+        function renderAppTabs() {
+            const container = document.getElementById('app-tabs');
+            if (!container) return;
+
             const apps = appsData[currentOS] || [];
+            // اگر اپ فعلی در این سیستم‌عامل نبود، اولین اپ را انتخاب کن
+            if (!apps.find(a => a.id === currentApp)) {
+                currentApp = apps.length > 0 ? apps[0].id : null;
+            }
+
+            container.innerHTML = apps.map(app => `
+                <button class="app-tab-btn ${app.id === currentApp ? 'active' : ''}" onclick="switchApp('${app.id}')">
+                    ${app.icon}
+                    ${app.name}
+                </button>
+            `).join('');
+        }
+
+        // رندر کردن کارت‌های ۳ گانه (نصب، اضافه کردن، اتصال)
+        function renderSteps() {
+            const container = document.getElementById('guide-steps');
+            if (!container) return;
+
+            const app = appsData[currentOS]?.find(a => a.id === currentApp);
+            if (!app) { container.innerHTML = ''; return; }
+
             const t = translations[currentLang];
             
-            let stepsHTML = '';
+            // دکمه‌های نصب (برای اندروید دکمه گوگل پلی و APK، برای بقیه فقط دانلود)
+            let installButtons = '';
             if (currentOS === 'android') {
-                stepsHTML = `
-                    <div class="guide-card">
-                        <div class="guide-title">${t.install_app}</div>
-                        <p class="guide-desc">${t.android_step1}</p>
-                        <div class="btn-group">
-                            ${apps.map(app => `<a href="${app.url}" target="_blank" class="btn btn-outline">${t.download} ${app.name}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.add_sub}</div>
-                        <p class="guide-desc">${t.android_step2}</p>
-                        <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)">${t.copy_link}</button>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.connect_use}</div>
-                        <p class="guide-desc">${t.android_step3}</p>
-                        <p class="guide-desc">${t.android_step4}</p>
-                    </div>
+                installButtons = `
+                    <a href="${app.market}" target="_blank" class="btn btn-cyan">
+                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.69 8.12c.43.25.71.71.71 1.23s-.28.98-.71 1.23L3.84 21.85c-.5.24-.84-.24-.84-.85z"/></svg>
+                        ${t.open_gplay}
+                    </a>
+                    <a href="${app.apk}" target="_blank" class="btn btn-cyan">
+                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        ${t.download_apk}
+                    </a>
                 `;
-            } else if (currentOS === 'ios') {
-                stepsHTML = `
-                    <div class="guide-card">
-                        <div class="guide-title">${t.install_app}</div>
-                        <p class="guide-desc">${t.ios_step1}</p>
-                        <div class="btn-group">
-                            ${apps.map(app => `<a href="${app.url}" target="_blank" class="btn btn-outline">${t.download} ${app.name}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.add_sub}</div>
-                        <p class="guide-desc">${t.ios_step2}</p>
-                        <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)">${t.copy_link}</button>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.connect_use}</div>
-                        <p class="guide-desc">${t.ios_step3}</p>
-                        <p class="guide-desc">${t.ios_step4}</p>
-                    </div>
-                `;
-            } else if (currentOS === 'windows') {
-                stepsHTML = `
-                    <div class="guide-card">
-                        <div class="guide-title">${t.install_app}</div>
-                        <p class="guide-desc">${t.windows_step1}</p>
-                        <div class="btn-group">
-                            ${apps.map(app => `<a href="${app.url}" target="_blank" class="btn btn-outline">${t.download} ${app.name}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.add_sub}</div>
-                        <p class="guide-desc">${t.windows_step2}</p>
-                        <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)">${t.copy_link}</button>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.connect_use}</div>
-                        <p class="guide-desc">${t.windows_step3}</p>
-                        <p class="guide-desc">${t.windows_step4}</p>
-                    </div>
-                `;
-            } else if (currentOS === 'mac') {
-                stepsHTML = `
-                    <div class="guide-card">
-                        <div class="guide-title">${t.install_app}</div>
-                        <p class="guide-desc">${t.mac_step1}</p>
-                        <div class="btn-group">
-                            ${apps.map(app => `<a href="${app.url}" target="_blank" class="btn btn-outline">${t.download} ${app.name}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.add_sub}</div>
-                        <p class="guide-desc">${t.mac_step2}</p>
-                        <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)">${t.copy_link}</button>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.connect_use}</div>
-                        <p class="guide-desc">${t.mac_step3}</p>
-                        <p class="guide-desc">${t.mac_step4}</p>
-                    </div>
-                `;
-            } else if (currentOS === 'linux') {
-                stepsHTML = `
-                    <div class="guide-card">
-                        <div class="guide-title">${t.install_app}</div>
-                        <p class="guide-desc">${t.linux_step1}</p>
-                        <div class="btn-group">
-                            ${apps.map(app => `<a href="${app.url}" target="_blank" class="btn btn-outline">${t.download} ${app.name}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.add_sub}</div>
-                        <p class="guide-desc">${t.linux_step2}</p>
-                        <button class="btn btn-primary" onclick="copyText('https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt', this)">${t.copy_link}</button>
-                    </div>
-                    <div class="guide-card">
-                        <div class="guide-title">${t.connect_use}</div>
-                        <p class="guide-desc">${t.linux_step3}</p>
-                        <p class="guide-desc">${t.linux_step4}</p>
-                    </div>
+            } else {
+                installButtons = `
+                    <a href="${app.market}" target="_blank" class="btn btn-cyan">
+                        <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        ${currentOS === 'ios' || currentOS === 'mac' ? 'App Store' : 'Download'}
+                    </a>
                 `;
             }
 
-            contentContainer.innerHTML = stepsHTML;
+            // لینک دیپ لینک برای اضافه کردن مستقیم
+            // در اندروید و iOS این لینک اپ را باز می‌کند. برای دسکتاپ چون استاندارد نیست، فقط کپی می‌کنیم.
+            let encodedSub = encodeURIComponent(SUB_LINK);
+            if (app.id === 'shadowrocket') {
+                // Shadowrocket نیاز به Base64 دارد
+                encodedSub = btoa(SUB_LINK);
+            }
+            const deepLink = `${app.scheme}${encodedSub}`;
+            
+            // برای ویندوز و مک که دیپ لینک مستقیم ندارند، فقط کپی می‌کنیم
+            let addButtonAction = `onclick="triggerDeepLink('${deepLink}', '${app.scheme}')"`;
+            if (currentOS === 'windows') {
+                addButtonAction = `onclick="copyToClipboard('${SUB_LINK}')"`;
+            }
+
+            container.innerHTML = `
+                <!-- کارت ۱: نصب -->
+                <div class="step-card">
+                    <div class="step-icon-circle">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">${t.step1_title}</div>
+                        <div class="step-desc">${t['step1_desc_' + (currentOS === 'ios' ? 'ios' : currentOS === 'windows' || currentOS === 'mac' ? 'win' : 'android')]}</div>
+                        <div class="btn-group">
+                            ${installButtons}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- کارت ۲: اضافه کردن اشتراک -->
+                <div class="step-card">
+                    <div class="step-icon-circle">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">${t.step2_title}</div>
+                        <div class="step-desc">${t.step2_desc}</div>
+                        <div class="btn-group">
+                            <button class="btn btn-purple" ${addButtonAction}>
+                                <svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                ${t.btn_add}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- کارت ۳: اتصال -->
+                <div class="step-card">
+                    <div class="step-icon-circle">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">${t.step3_title}</div>
+                        <div class="step-desc">${t.step3_desc}</div>
+                    </div>
+                </div>
+            `;
         }
 
-        // تغییر سیستم‌عامل انتخاب‌شده
+        // ==================== ۷. اکشن‌ها ====================
+
+        // تغییر سیستم‌عامل
         function switchOS(os) {
             currentOS = os;
-            updateGuideContent();
+            renderOSSelector();
+            renderAppTabs();
+            renderSteps();
         }
 
-        // ==================== ۵. محاسبه تاریخ و روزهای باقی‌مانده ====================
-        function updateDateInfo() {
-            // تاریخ انقضا: یک سال بعد از امروز (می‌توانید تاریخ شروع را تغییر دهید)
-            const startDate = new Date(); // تاریخ شروع (امروز)
-            const expiryDate = new Date(startDate);
-            expiryDate.setFullYear(expiryDate.getFullYear() + 1); // یک سال بعد
+        // تغییر اپلیکیشن
+        function switchApp(appId) {
+            currentApp = appId;
+            renderAppTabs();
+            renderSteps();
+        }
 
-            // محاسبه روزهای باقی‌مانده
+        // باز کردن دیپ لینک (افزودن مستقیم)
+        function triggerDeepLink(url, scheme) {
+            showToast(translations[currentLang].toast_opening);
+            
+            // تلاش برای باز کردن لینک
+            window.location.href = url;
+            
+            // Fallback: کپی کردن لینک اگر اپ باز نشد (برای دسکتاپ)
+            if (currentOS === 'windows' || currentOS === 'mac') {
+                copyToClipboard(SUB_LINK);
+            }
+        }
+
+        // کپی به کلیپ‌بورد (برای دسکتاپ)
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(translations[currentLang].toast_opening);
+            });
+        }
+
+        // ==================== ۸. تاریخ و روزهای باقی‌مانده ====================
+        function updateDateInfo() {
+            const startDate = new Date();
+            const expiryDate = new Date(startDate);
+            expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+
             const now = new Date();
             const timeDiff = expiryDate.getTime() - now.getTime();
             const daysLeft = Math.max(0, Math.ceil(timeDiff / (1000 * 3600 * 24)));
 
-            // نمایش روزهای باقی‌مانده
             document.getElementById('days-left').textContent = daysLeft;
 
-            // نمایش تاریخ انقضا بر اساس زبان
             const expiryEl = document.getElementById('expiry-date');
             if (currentLang === 'fa') {
-                // تبدیل به شمسی با استفاده از jalaali-js
                 const jDate = jalaali.toJalaali(expiryDate.getFullYear(), expiryDate.getMonth() + 1, expiryDate.getDate());
                 expiryEl.textContent = `${jDate.jy}/${jDate.jm}/${jDate.jd}`;
             } else {
-                // فرمت استاندارد برای انگلیسی و روسی
                 const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
                 expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', options);
             }
 
-            // نمایش حجم نامحدود
-            document.getElementById('traffic-display').textContent = translations[currentLang].status_unlimited || 'نامحدود';
-
-            // به‌روزرسانی درصد رینگ (در اینجا همیشه ۱۰۰٪ چون نامحدود است)
-            const ringPercent = daysLeft > 0 ? 100 : 0;
-            document.getElementById('ring-percent').textContent = ringPercent + '%';
-            const ring = document.querySelector('.status-ring');
-            ring.style.background = `conic-gradient(var(--success) ${ringPercent}%, transparent 0)`;
+            document.getElementById('traffic-display').textContent = translations[currentLang].status_unlimited;
         }
 
-        // ==================== ۶. اجرای اولیه ====================
+        // ==================== ۹. شروع برنامه ====================
         window.onload = function() {
-            // تشخیص خودکار سیستم‌عامل
             currentOS = detectOS();
             
-            // تنظیم زبان پیش‌فرض (فارسی)
+            // تنظیم پیش‌فرض اپ بر اساس سیستم‌عامل
+            if (appsData[currentOS] && appsData[currentOS].length > 0) {
+                currentApp = appsData[currentOS][0].id;
+            }
+
             setLanguage('fa');
-            
-            // به‌روزرسانی تاریخ
+            renderOSSelector();
             updateDateInfo();
-            
-            // باز کردن آکاردئون راهنما به صورت پیش‌فرض
             document.getElementById('acc-guide').classList.add('active');
         };
     </script>
