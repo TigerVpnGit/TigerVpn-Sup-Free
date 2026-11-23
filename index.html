@@ -93,8 +93,6 @@
         }
 
         /* ==================== ۵. کامپوننت‌های سفارشی ==================== */
-
-        /* افکت شیشه‌ای (Glassmorphism) */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -104,14 +102,10 @@
             transition: all 0.3s ease;
             border-radius: var(--radius);
         }
-
-        /* افکت هاله نئون (Neon Glow) */
-        .glass:hover, .glass:active {
+        .glass:hover {
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
             border-color: rgba(168, 85, 247, 0.6);
         }
-
-        /* گرادیانت متنی (برای تیترها) */
         .text-gradient {
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -121,8 +115,6 @@
             padding-bottom: 0.3rem;
             display: inline-block;
         }
-
-        /* کارت‌های انتخاب سیستم‌عامل */
         .os-card {
             border-radius: var(--radius);
             transition: all 0.2s ease;
@@ -139,24 +131,38 @@
         }
 
         /* ==================== چیدمان برنامه ==================== */
-        .app-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 20px; }
+        .app-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 15px; }
 
-        /* هدر */
+        /* هدر (منوی بالا) */
         .header-bar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 15px; flex-wrap: wrap; gap: 10px;
         }
-        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .header-left { display: flex; align-items: center; gap: 10px; }
         
-        /* منوی کشویی زبان */
+        /* منوی کشویی زبان (اصلاح شده) */
+        .select-wrapper { position: relative; display: inline-block; }
         .lang-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
             background: transparent; color: var(--text);
-            border: 1px solid var(--border); padding: 8px 12px;
+            border: 1px solid var(--border); 
+            padding: 8px 12px 8px 32px; /* فاصله برای فلش */
             border-radius: 8px; font-family: inherit; font-size: 0.9rem;
             cursor: pointer; outline: none; transition: all 0.2s;
         }
+        html[dir="ltr"] .lang-select { padding: 8px 32px 8px 12px; }
+        
         .lang-select:hover, .lang-select:focus { border-color: var(--accent); box-shadow: 0 0 10px var(--glass-border); }
         .lang-select option { background: var(--bg-1); color: var(--text); }
+        
+        /* فلش سفارشی منوی کشویی */
+        .select-arrow {
+            position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+            pointer-events: none; width: 14px; height: 14px; fill: var(--muted);
+        }
+        html[dir="ltr"] .select-arrow { left: auto; right: 10px; }
 
         /* دکمه تم */
         .theme-toggle {
@@ -177,10 +183,9 @@
         }
         .qr-header-btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
 
-        /* ==================== نوار شبکه‌های اجتماعی (بالای آموزش) ==================== */
+        /* ==================== نوار شبکه‌های اجتماعی ==================== */
         .social-bar {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 10px; padding: 12px; border-radius: var(--radius);
+            display: flex; gap: 10px; padding: 10px; border-radius: var(--radius);
         }
         .social-item {
             flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -188,30 +193,15 @@
             font-weight: bold; font-size: 0.9rem; transition: all 0.2s;
             border: 1px solid transparent;
         }
-        
         /* رنگ اختصاصی تلگرام */
-        .social-item.tg {
-            background: rgba(0, 136, 204, 0.1); color: #229ED9; border-color: rgba(34, 158, 217, 0.3);
-        }
-        .social-item.tg:hover {
-            background: #0088cc; color: #fff; box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
-            border-color: #0088cc; transform: translateY(-2px);
-        }
+        .social-item.tg { background: rgba(0, 136, 204, 0.1); color: #229ED9; border-color: rgba(34, 158, 217, 0.3); }
+        .social-item.tg:hover { background: #0088cc; color: #fff; box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4); border-color: #0088cc; transform: translateY(-2px); }
         /* رنگ اختصاصی اینستاگرام */
-        .social-item.insta {
-            background: linear-gradient(45deg, rgba(240, 148, 51, 0.1), rgba(188, 24, 136, 0.1));
-            color: #dc2743; border-color: rgba(220, 39, 67, 0.3);
-        }
-        .social-item.insta:hover {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: #fff; box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4);
-            border-color: transparent; transform: translateY(-2px);
-        }
+        .social-item.insta { background: linear-gradient(45deg, rgba(240, 148, 51, 0.1), rgba(188, 24, 136, 0.1)); color: #dc2743; border-color: rgba(220, 39, 67, 0.3); }
+        .social-item.insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); border-color: transparent; transform: translateY(-2px); }
 
         /* ==================== کارت وضعیت ==================== */
-        .status-card {
-            padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px;
-        }
+        .status-card { padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
         .status-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
         .status-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text); }
         .status-row span.label { color: var(--muted); }
@@ -224,27 +214,16 @@
             display: flex; justify-content: center; align-items: center;
             position: relative; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
         }
-        .status-ring::before {
-            content: ''; position: absolute; width: 74px; height: 74px;
-            background: var(--bg-1); border-radius: 50%;
-        }
+        .status-ring::before { content: ''; position: absolute; width: 74px; height: 74px; background: var(--bg-1); border-radius: 50%; }
         .status-ring-text { position: relative; z-index: 1; font-size: 1.1rem; font-weight: 800; color: var(--danger); }
-        .status-badge {
-            background: var(--success); color: #fff; padding: 4px 12px;
-            border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-        }
+        .status-badge { background: var(--success); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
 
         /* ==================== آکاردئون ==================== */
         .accordion-group { display: flex; flex-direction: column; gap: 12px; }
         .accordion-item { overflow: hidden; }
-        .accordion-header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 20px; cursor: pointer; user-select: none;
-            transition: background 0.2s;
-        }
+        .accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; user-select: none; transition: background 0.2s; }
         .accordion-header:hover { background: rgba(255,255,255,0.05); }
         [data-theme="light"] .accordion-header:hover { background: rgba(0,0,0,0.03); }
-        
         .accordion-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; }
         .accordion-icon { transition: transform 0.3s; }
         .accordion-item.active .accordion-icon { transform: rotate(180deg); }
@@ -255,79 +234,45 @@
 
         /* تب‌ها و دکمه‌ها */
         .app-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
-        .app-tab-btn {
-            flex: 1; min-width: 100px; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; gap: 6px; 
-        }
+        .app-tab-btn { flex: 1; min-width: 100px; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
         /* کارت‌های مراحل */
-        .step-card {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
-            display: flex; align-items: flex-start; gap: 15px; transition: all 0.2s;
-        }
+        .step-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.2s; }
         [data-theme="light"] .step-card { background: rgba(255, 255, 255, 0.4); }
         .step-card:hover { border-color: var(--accent); }
-        
         .step-icon { color: var(--sky); }
         .step-content { flex: 1; }
         .step-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
         .step-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
         .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
         
-        .btn {
-            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
-            border-radius: 8px; font-family: inherit; font-size: 0.85rem; font-weight: 600;
-            cursor: pointer; text-decoration: none; transition: all 0.2s;
-        }
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .btn-cyan { background: rgba(56, 189, 248, 0.15); color: var(--sky); border: 1px solid var(--sky); }
         .btn-cyan:hover { background: var(--sky); color: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
         .btn-purple { background: rgba(124, 58, 237, 0.15); color: var(--purple); border: 1px solid var(--purple); }
         .btn-purple:hover { background: var(--purple); color: #fff; box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
 
-        /* ==================== مودال (پنجره بارکد) ==================== */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--modal-overlay); backdrop-filter: blur(5px);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
-        }
+        /* ==================== مودال ==================== */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--modal-overlay); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-content {
-            width: 90%; max-width: 400px; padding: 20px;
-            position: relative; transform: translateY(20px); transition: transform 0.3s;
-        }
+        .modal-content { width: 90%; max-width: 400px; padding: 20px; position: relative; transform: translateY(20px); transition: transform 0.3s; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        .modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
-        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
         .modal-title { font-weight: bold; font-size: 1.1rem; }
-        .modal-close {
-            background: transparent; border: none; color: var(--muted);
-            cursor: pointer; font-size: 1.5rem; line-height: 1; padding: 5px;
-        }
+        .modal-close { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 1.5rem; line-height: 1; padding: 5px; }
         .modal-close:hover { color: var(--danger); }
-        .qr-container {
-            display: flex; justify-content: center; align-items: center;
-            background: #fff; padding: 15px; border-radius: var(--radius); margin-bottom: 15px;
-        }
+        .qr-container { display: flex; justify-content: center; align-items: center; background: #fff; padding: 15px; border-radius: var(--radius); margin-bottom: 15px; }
         .qr-container img { width: 100%; max-width: 200px; height: auto; display: block; }
         .modal-desc { text-align: center; font-size: 0.85rem; color: var(--muted); margin-bottom: 15px; }
-        .modal-copy-btn {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 12px; background: var(--gradient); color: #fff;
-            border: none; border-radius: 8px; font-family: inherit; font-size: 1rem;
-            font-weight: bold; cursor: pointer; transition: all 0.2s;
-        }
+        .modal-copy-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--gradient); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .modal-copy-btn:hover { opacity: 0.9; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
 
         /* ==================== ریسپانسیو ==================== */
         @media (max-width: 600px) {
-            .header-bar { flex-direction: column; }
-            .header-actions { width: 100%; justify-content: space-between; }
+            .header-bar { flex-direction: column; align-items: stretch; }
+            .header-left { justify-content: space-between; width: 100%; }
+            .qr-header-btn { width: 100%; justify-content: center; }
             .social-bar { flex-direction: column; }
-            .social-item { width: 100%; }
             .status-card { flex-direction: column; text-align: center; }
             .status-info { align-items: center; }
             .step-card { flex-direction: column; align-items: center; text-align: center; }
@@ -337,46 +282,50 @@
         }
 
         /* آیکون‌ها */
-        .icon { width: 20px; height: 20px; fill: currentColor; }
+        .icon { width: 20px; height: 20px; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
         
-        <!-- هدر: زبان، تم و دکمه QR -->
+        <!-- هدر (منوی بالا) -->
         <div class="header-bar glass">
-            <div class="header-actions">
-                <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
-                    <option value="fa">فارسی</option>
-                    <option value="en">English</option>
-                    <option value="ru">Русский</option>
-                </select>
+            <div class="header-left">
+                <!-- انتخاب زبان با فلش سفارشی -->
+                <div class="select-wrapper">
+                    <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+                        <option value="fa">فارسی</option>
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                    </select>
+                    <!-- فلش منوی کشویی -->
+                    <svg class="select-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <!-- دکمه تم -->
                 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تغییر تم"></button>
             </div>
+            <!-- دکمه دریافت لینک -->
             <button class="qr-header-btn" onclick="openModal()">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                 <span data-i18n="get_link">دریافت لینک</span>
             </button>
         </div>
 
-        <!-- نوار شبکه‌های اجتماعی (دقیقا بالای آموزش) -->
+        <!-- نوار شبکه‌های اجتماعی -->
         <div class="social-bar glass">
-            <!-- تلگرام ۱ -->
             <a href="https://t.me/YourBuyBot" target="_blank" class="social-item tg">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
                 <span data-i18n="buy_bot">خرید از ربات</span>
             </a>
             
-            <!-- اینستاگرام (وسط) -->
             <a href="https://instagram.com/YourInstagram" target="_blank" class="social-item insta">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 <span data-i18n="instagram">اینستاگرام</span>
             </a>
 
-            <!-- تلگرام ۲ -->
             <a href="https://t.me/YourChannel" target="_blank" class="social-item tg">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
                 <span data-i18n="channel">کانال اطلاع‌رسانی</span>
             </a>
         </div>
@@ -410,18 +359,15 @@
             <div class="accordion-item glass active" id="acc-guide">
                 <div class="accordion-header" onclick="toggleAccordion('acc-guide')">
                     <div class="accordion-title">
-                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--sky);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
                         <span class="text-gradient" data-i18n="guide_title">راهنمای اتصال</span>
                     </div>
-                    <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></div>
+                    <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <!-- انتخاب سیستم‌عامل -->
                         <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;"></div>
-                        <!-- انتخاب اپلیکیشن -->
                         <div class="app-tabs" id="app-tabs"></div>
-                        <!-- کارت‌های مراحل -->
                         <div id="guide-steps"></div>
                     </div>
                 </div>
@@ -442,142 +388,83 @@
             </div>
             <p class="modal-desc" data-i18n="modal_desc">کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک زیر را کپی کرده و در کلاینت خود قرار دهید.</p>
             <button class="modal-copy-btn" onclick="copySubLink(this)">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 <span data-i18n="copy_link">کپی لینک</span>
             </button>
         </div>
     </div>
 
     <script>
-        // ==================== ۱. تنظیمات کلی ====================
         const SUB_LINK = "https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt";
         
-        // ==================== ۲. دیکشنری ترجمه‌ها ====================
         const translations = {
             fa: {
-                traffic: "میزان استفاده:", unlimited: "نامحدود",
-                expiry_date: "تاریخ پایان اشتراک:", days_left: "روزهای باقی‌مانده:",
-                active: "فعال", get_link: "دریافت لینک",
-                guide_title: "راهنمای اتصال", support_title: "پشتیبانی",
-                os_android: "اندروید", os_ios: "آیفون", os_windows: "ویندوز", os_mac: "مک",
+                traffic: "میزان استفاده:", unlimited: "نامحدود", expiry_date: "تاریخ پایان اشتراک:", days_left: "روزهای باقی‌مانده:", active: "فعال", get_link: "دریافت لینک",
+                guide_title: "راهنمای اتصال", os_android: "اندروید", os_ios: "آیفون", os_windows: "ویندوز", os_mac: "مک",
                 step1_title: "نصب برنامه", step2_title: "اضافه کردن اشتراک", step3_title: "متصل شوید و استفاده کنید",
                 step1_desc_android: "صفحه را در Google Play باز کنید و برنامه را نصب کنید. یا مستقیماً از فایل APK نصب کنید.",
                 step1_desc_ios: "برنامه را از App Store دانلود و نصب کنید.",
                 step1_desc_win: "فایل برنامه را دانلود و از حالت فشرده خارج کنید.",
                 step2_desc: "برای افزودن اشتراک، روی دکمه زیر کلیک کنید تا به طور خودکار در برنامه اضافه شود.",
                 step3_desc: "برنامه را باز کنید و به سرور متصل شوید.",
-                download_apk: "دانلود APK", open_gplay: "Google Play",
-                btn_add: "اضافه کردن",
-                toast_opening: "در حال باز کردن برنامه...",
-                modal_title: "دریافت لینک", modal_desc: "کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک را کپی کنید.",
-                copy_link: "کپی لینک",
+                download_apk: "دانلود APK", open_gplay: "Google Play", btn_add: "اضافه کردن", toast_opening: "در حال باز کردن برنامه...",
+                modal_title: "دریافت لینک", modal_desc: "کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک را کپی کنید.", copy_link: "کپی لینک",
                 buy_bot: "خرید از ربات", channel: "کانال اطلاع‌رسانی", instagram: "اینستاگرام"
             },
             en: {
-                traffic: "Data Usage:", unlimited: "Unlimited",
-                expiry_date: "Expiry Date:", days_left: "Days Left:",
-                active: "Active", get_link: "Get Link",
-                guide_title: "Connection Guide", support_title: "Support",
-                os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
+                traffic: "Data Usage:", unlimited: "Unlimited", expiry_date: "Expiry Date:", days_left: "Days Left:", active: "Active", get_link: "Get Link",
+                guide_title: "Connection Guide", os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
                 step1_title: "Install App", step2_title: "Add Subscription", step3_title: "Connect & Use",
                 step1_desc_android: "Open the page in Google Play and install the app, or download the APK directly.",
                 step1_desc_ios: "Download and install the app from the App Store.",
                 step1_desc_win: "Download the app file and extract it.",
                 step2_desc: "To add the subscription, click the button below to automatically add it to the app.",
                 step3_desc: "Open the app and connect to the server.",
-                download_apk: "Download APK", open_gplay: "Google Play",
-                btn_add: "Add",
-                toast_opening: "Opening app...",
-                modal_title: "Get Link", modal_desc: "Scan the QR code above in your client. Or copy the link below.",
-                copy_link: "Copy Link",
+                download_apk: "Download APK", open_gplay: "Google Play", btn_add: "Add", toast_opening: "Opening app...",
+                modal_title: "Get Link", modal_desc: "Scan the QR code above in your client. Or copy the link below.", copy_link: "Copy Link",
                 buy_bot: "Buy from Bot", channel: "Channel", instagram: "Instagram"
             },
             ru: {
-                traffic: "Трафик:", unlimited: "Безлимитный",
-                expiry_date: "Дата истечения:", days_left: "Осталось дней:",
-                active: "Активен", get_link: "Получить ссылку",
-                guide_title: "Руководство", support_title: "Поддержка",
-                os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
+                traffic: "Трафик:", unlimited: "Безлимитный", expiry_date: "Дата истечения:", days_left: "Осталось дней:", active: "Активен", get_link: "Получить ссылку",
+                guide_title: "Руководство", os_android: "Android", os_ios: "iOS", os_windows: "Windows", os_mac: "macOS",
                 step1_title: "Установить", step2_title: "Добавить подписку", step3_title: "Подключиться",
                 step1_desc_android: "Откройте страницу в Google Play и установите приложение, или скачайте APK.",
                 step1_desc_ios: "Скачайте и установите приложение из App Store.",
                 step1_desc_win: "Скачайте файл приложения и распакуйте его.",
                 step2_desc: "Чтобы добавить подписку, нажмите кнопку ниже.",
                 step3_desc: "Откройте приложение и подключитесь к серверу.",
-                download_apk: "Скачать APK", open_gplay: "Google Play",
-                btn_add: "Добавить",
-                toast_opening: "Открытие приложения...",
-                modal_title: "Получить ссылку", modal_desc: "Отсканируйте QR-код в клиенте. Или скопируйте ссылку.",
-                copy_link: "Копировать",
+                download_apk: "Скачать APK", open_gplay: "Google Play", btn_add: "Добавить", toast_opening: "Открытие приложения...",
+                modal_title: "Получить ссылку", modal_desc: "Отсканируйте QR-код в клиенте. Или скопируйте ссылку.", copy_link: "Копировать",
                 buy_bot: "Купить в боте", channel: "Канал", instagram: "Instagram"
             }
         };
 
-        // ==================== ۳. دیتابیس اپلیکیشن‌ها ====================
         const appsData = {
             android: [
-                { 
-                    id: "v2rayng", name: "v2rayNG", 
-                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
-                    market: "https://play.google.com/store/apps/details?id=com.v2ray.ang",
-                    apk: "https://github.com/2dust/v2rayNG/releases",
-                    scheme: "v2rayng://install-sub?url="
-                },
-                { 
-                    id: "happ", name: "Happ", 
-                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
-                    market: "https://play.google.com/store/apps/details?id=com.happproxy",
-                    apk: "https://github.com/Happ-proxy/happ-android/releases",
-                    scheme: "happ://add/"
-                }
+                { id: "v2rayng", name: "v2rayNG", icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', market: "https://play.google.com/store/apps/details?id=com.v2ray.ang", apk: "https://github.com/2dust/v2rayNG/releases", scheme: "v2rayng://install-sub?url=" },
+                { id: "happ", name: "Happ", icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', market: "https://play.google.com/store/apps/details?id=com.happproxy", apk: "https://github.com/Happ-proxy/happ-android/releases", scheme: "happ://add/" }
             ],
             ios: [
-                { 
-                    id: "streisand", name: "Streisand", 
-                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
-                    market: "https://apps.apple.com/app/streisand/id6450534064",
-                    apk: null,
-                    scheme: "streisand://import/"
-                }
+                { id: "streisand", name: "Streisand", icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>', market: "https://apps.apple.com/app/streisand/id6450534064", apk: null, scheme: "streisand://import/" }
             ],
             windows: [
-                { 
-                    id: "v2rayn", name: "v2rayN", 
-                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>',
-                    market: "https://github.com/2dust/v2rayN/releases",
-                    apk: "https://github.com/2dust/v2rayN/releases",
-                    scheme: "v2rayn://" 
-                }
+                { id: "v2rayn", name: "v2rayN", icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>', market: "https://github.com/2dust/v2rayN/releases", apk: "https://github.com/2dust/v2rayN/releases", scheme: "v2rayn://" }
             ],
             mac: [
-                { 
-                    id: "v2box", name: "V2Box", 
-                    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
-                    market: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690",
-                    apk: null,
-                    scheme: "v2box://import/"
-                }
+                { id: "v2box", name: "V2Box", icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>', market: "https://apps.apple.com/app/v2box-v2ray-client/id6446814690", apk: null, scheme: "v2box://import/" }
             ]
         };
 
-        // ==================== ۴. وضعیت برنامه ====================
         let currentLang = 'fa';
         let currentTheme = 'dark';
         let currentOS = 'android';
         let currentApp = 'v2rayng';
 
-        // ==================== ۵. توابع اصلی ====================
-
         function initTheme() {
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const hour = new Date().getHours();
             const isNightTime = (hour >= 18 || hour < 6);
-
-            if (prefersDark || (!window.matchMedia && isNightTime)) {
-                currentTheme = 'dark';
-            } else {
-                currentTheme = 'light';
-            }
+            if (prefersDark || (!window.matchMedia && isNightTime)) { currentTheme = 'dark'; } else { currentTheme = 'light'; }
             applyTheme();
         }
 
@@ -585,12 +472,13 @@
             document.documentElement.setAttribute('data-theme', currentTheme);
             const icon = document.getElementById('themeBtn');
             
-            // اگر تم تاریک است، آیکون خورشید (برای رفتن به روز) نشان داده شود
+            // آیکون خورشید و ماه استاندارد و زیبا
             if (currentTheme === 'dark') {
-                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>';
+                // حالت تاریک فعال است، آیکون خورشید برای رفتن به روشن
+                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
             } else {
-                // اگر تم روشن است، آیکون ماه (برای رفتن به شب) نشان داده شود
-                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>';
+                // حالت روشن فعال است، آیکون ماه برای رفتن به تاریک
+                icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
             }
         }
 
@@ -606,9 +494,7 @@
             
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
-                if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
+                if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; }
             });
 
             updateDateAndStatus();
@@ -617,9 +503,7 @@
             renderSteps();
         }
 
-        function toggleAccordion(id) {
-            document.getElementById(id).classList.toggle('active');
-        }
+        function toggleAccordion(id) { document.getElementById(id).classList.toggle('active'); }
 
         function detectOS() {
             const ua = navigator.userAgent.toLowerCase();
@@ -638,195 +522,99 @@
             setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
         }
 
-        // ==================== ۶. مودال و QR Code ====================
-        
         function openModal() {
             const qrImg = document.getElementById('qrImage');
             qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(SUB_LINK)}&color=7c3aed&bgcolor=ffffff`;
             document.getElementById('qrModal').classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('qrModal').classList.remove('active');
-        }
+        function closeModal() { document.getElementById('qrModal').classList.remove('active'); }
 
         function copySubLink(btnElement) {
             navigator.clipboard.writeText(SUB_LINK).then(() => {
                 const originalText = btnElement.innerHTML;
-                btnElement.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> کپی شد!';
+                btnElement.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> کپی شد!';
                 setTimeout(() => { btnElement.innerHTML = originalText; }, 2000);
             });
         }
 
-        document.getElementById('qrModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // ==================== ۷. رندر کردن رابط کاربری ====================
+        document.getElementById('qrModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
         function renderOSSelector() {
             const container = document.getElementById('os-selector');
-            if (!container) return;
-            
             const osList = [
-                { id: 'android', labelKey: 'os_android', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z"/></svg>' },
-                { id: 'ios', labelKey: 'os_ios', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' },
-                { id: 'windows', labelKey: 'os_windows', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>' },
-                { id: 'mac', labelKey: 'os_mac', icon: '<svg class="icon" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' }
+                { id: 'android', labelKey: 'os_android', icon: '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 5.5L16 4l-1.5 1.5L13 4v6h6V4l-1.5 1.5zM7 4L5.5 5.5 4 4v6h6V4L8.5 5.5 7 4zm10 10H7v-2h10v2zm0-8H7V4h10v2z"/></svg>' },
+                { id: 'ios', labelKey: 'os_ios', icon: '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' },
+                { id: 'windows', labelKey: 'os_windows', icon: '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l8-1.17V12H3zm0 1h8v5.25l-8-1.17V13zm9 5.45V13h8.5v6.42L12 18.45zM12 12V4.38l8.5 1.17V12H12z"/></svg>' },
+                { id: 'mac', labelKey: 'os_mac', icon: '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>' }
             ];
-
-            container.innerHTML = osList.map(os => `
-                <button class="app-tab-btn os-card ${os.id === currentOS ? 'selected' : ''}" onclick="switchOS('${os.id}')">
-                    ${os.icon} ${translations[currentLang][os.labelKey]}
-                </button>
-            `).join('');
+            container.innerHTML = osList.map(os => `<button class="app-tab-btn os-card ${os.id === currentOS ? 'selected' : ''}" onclick="switchOS('${os.id}')">${os.icon} ${translations[currentLang][os.labelKey]}</button>`).join('');
         }
 
         function renderAppTabs() {
             const container = document.getElementById('app-tabs');
-            if (!container) return;
-
             const apps = appsData[currentOS] || [];
-            if (!apps.find(a => a.id === currentApp)) {
-                currentApp = apps.length > 0 ? apps[0].id : null;
-            }
-
-            container.innerHTML = apps.map(app => `
-                <button class="app-tab-btn os-card ${app.id === currentApp ? 'selected' : ''}" onclick="switchApp('${app.id}')">
-                    ${app.icon} ${app.name}
-                </button>
-            `).join('');
+            if (!apps.find(a => a.id === currentApp)) { currentApp = apps.length > 0 ? apps[0].id : null; }
+            container.innerHTML = apps.map(app => `<button class="app-tab-btn os-card ${app.id === currentApp ? 'selected' : ''}" onclick="switchApp('${app.id}')">${app.icon} ${app.name}</button>`).join('');
         }
 
         function renderSteps() {
             const container = document.getElementById('guide-steps');
-            if (!container) return;
-
             const app = appsData[currentOS]?.find(a => a.id === currentApp);
             if (!app) { container.innerHTML = ''; return; }
-
             const t = translations[currentLang];
-            
-            let installButtons = '';
-            if (currentOS === 'android') {
-                installButtons = `
-                    <a href="${app.market}" target="_blank" class="btn btn-cyan">${t.open_gplay}</a>
-                    <a href="${app.apk}" target="_blank" class="btn btn-cyan">${t.download_apk}</a>
-                `;
-            } else {
-                installButtons = `<a href="${app.market}" target="_blank" class="btn btn-cyan">Download</a>`;
-            }
-
+            let installButtons = currentOS === 'android' ? `<a href="${app.market}" target="_blank" class="btn btn-cyan">${t.open_gplay}</a><a href="${app.apk}" target="_blank" class="btn btn-cyan">${t.download_apk}</a>` : `<a href="${app.market}" target="_blank" class="btn btn-cyan">Download</a>`;
             let encodedSub = encodeURIComponent(SUB_LINK);
-            const deepLink = `${app.scheme}${encodedSub}`;
-            let addButtonAction = `onclick="triggerDeepLink('${deepLink}')"`;
-            if (currentOS === 'windows') {
-                addButtonAction = `onclick="copySubLink(this)"`;
-            }
-
+            let deepLink = `${app.scheme}${encodedSub}`;
+            let addButtonAction = (currentOS === 'windows') ? `onclick="copySubLink(this)"` : `onclick="triggerDeepLink('${deepLink}')"`;
+            
             container.innerHTML = `
-                <div class="step-card">
-                    <div class="step-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></div>
-                    <div class="step-content">
-                        <div class="step-title">${t.step1_title}</div>
-                        <div class="step-desc">${t['step1_desc_' + (currentOS === 'ios' ? 'ios' : currentOS === 'windows' || currentOS === 'mac' ? 'win' : 'android')]}</div>
-                        <div class="btn-group">${installButtons}</div>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon" style="color:var(--purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></div>
-                    <div class="step-content">
-                        <div class="step-title">${t.step2_title}</div>
-                        <div class="step-desc">${t.step2_desc}</div>
-                        <div class="btn-group">
-                            <button class="btn btn-purple" ${addButtonAction}>${t.btn_add}</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon" style="color:var(--success)"><svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                    <div class="step-content">
-                        <div class="step-title">${t.step3_title}</div>
-                        <div class="step-desc">${t.step3_desc}</div>
-                    </div>
-                </div>
+                <div class="step-card"><div class="step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div><div class="step-content"><div class="step-title">${t.step1_title}</div><div class="step-desc">${t['step1_desc_' + (currentOS === 'ios' ? 'ios' : currentOS === 'windows' || currentOS === 'mac' ? 'win' : 'android')]}</div><div class="btn-group">${installButtons}</div></div></div>
+                <div class="step-card"><div class="step-icon" style="color:var(--purple)"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><div class="step-content"><div class="step-title">${t.step2_title}</div><div class="step-desc">${t.step2_desc}</div><div class="btn-group"><button class="btn btn-purple" ${addButtonAction}>${t.btn_add}</button></div></div></div>
+                <div class="step-card"><div class="step-icon" style="color:var(--success)"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div><div class="step-content"><div class="step-title">${t.step3_title}</div><div class="step-desc">${t.step3_desc}</div></div></div>
             `;
         }
 
-        // ==================== ۸. اکشن‌ها ====================
-        function switchOS(os) {
-            currentOS = os;
-            renderOSSelector();
-            renderAppTabs();
-            renderSteps();
-        }
+        function switchOS(os) { currentOS = os; renderOSSelector(); renderAppTabs(); renderSteps(); }
+        function switchApp(appId) { currentApp = appId; renderAppTabs(); renderSteps(); }
+        function triggerDeepLink(url) { showToast(translations[currentLang].toast_opening); window.location.href = url; }
 
-        function switchApp(appId) {
-            currentApp = appId;
-            renderAppTabs();
-            renderSteps();
-        }
-
-        function triggerDeepLink(url) {
-            showToast(translations[currentLang].toast_opening);
-            window.location.href = url;
-        }
-
-        // ==================== ۹. محاسبه تاریخ (پایان سال) ====================
         function updateDateAndStatus() {
             const now = new Date();
             let jNow = jalaali.toJalaali(now.getFullYear(), now.getMonth() + 1, now.getDate());
             let currentJYear = jNow.jy;
-            let isLeap = jalaali.isLeapJalaaliYear(currentJYear);
-            let endDay = isLeap ? 30 : 29;
+            let endDay = jalaali.isLeapJalaaliYear(currentJYear) ? 30 : 29;
             let endOfYearG = jalaali.toGregorian(currentJYear, 12, endDay);
             let expiryDate = new Date(endOfYearG.gy, endOfYearG.gm - 1, endOfYearG.gd, 23, 59, 59);
             let startOfYearG = jalaali.toGregorian(currentJYear, 1, 1);
             let startDate = new Date(startOfYearG.gy, startOfYearG.gm - 1, startOfYearG.gd);
 
-            const timeDiffExpiry = expiryDate.getTime() - now.getTime();
-            let daysLeft = Math.ceil(timeDiffExpiry / (1000 * 3600 * 24));
+            let daysLeft = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 3600 * 24));
             if (daysLeft < 0) daysLeft = 0;
 
-            const timeDiffTotal = expiryDate.getTime() - startDate.getTime();
-            const timeDiffPassed = now.getTime() - startDate.getTime();
-            
+            let timeDiffTotal = expiryDate.getTime() - startDate.getTime();
+            let timeDiffPassed = now.getTime() - startDate.getTime();
             let percentPassed = Math.floor((timeDiffPassed / timeDiffTotal) * 100);
             if (percentPassed < 0) percentPassed = 0;
             if (percentPassed > 100) percentPassed = 100;
 
             const expiryEl = document.getElementById('expiry-val');
-            if (currentLang === 'fa') {
-                expiryEl.textContent = `${currentJYear}/12/${endDay}`;
-            } else {
-                const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', options);
-            }
+            if (currentLang === 'fa') { expiryEl.textContent = `${currentJYear}/12/${endDay}`; } 
+            else { expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }); }
 
             document.getElementById('days-val').textContent = daysLeft;
             document.getElementById('traffic-val').textContent = translations[currentLang].unlimited;
-
             document.getElementById('ring-text').textContent = `${percentPassed}%`;
-            const ring = document.getElementById('status-ring');
-            ring.style.background = `conic-gradient(var(--danger) ${percentPassed}%, transparent 0)`;
+            document.getElementById('status-ring').style.background = `conic-gradient(var(--danger) ${percentPassed}%, transparent 0)`;
         }
 
-        // ==================== ۱۰. شروع برنامه ====================
         window.onload = function() {
             initTheme();
             currentOS = detectOS();
-            
-            if (appsData[currentOS] && appsData[currentOS].length > 0) {
-                currentApp = appsData[currentOS][0].id;
-            }
-
+            if (appsData[currentOS] && appsData[currentOS].length > 0) { currentApp = appsData[currentOS][0].id; }
             setLanguage('fa');
-            
             renderOSSelector();
             updateDateAndStatus();
-            
             document.getElementById('acc-guide').classList.add('active');
         };
     </script>
