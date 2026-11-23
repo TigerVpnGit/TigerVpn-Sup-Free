@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>راهنمای اتصال | TigerVPN</title>
-    <!-- فونت وزیرمتن -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <!-- کتابخانه تاریخ شمسی -->
     <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.1.5/dist/jalaali.min.js"></script>
     <style>
-        /* ==================== ۱. متغیرهای رنگ تم روشن (Light Theme) ==================== */
         :root {
             --radius: 14px;
             --sky: #38bdf8;
             --purple: #7c3aed;
             --gradient: linear-gradient(135deg, #38bdf8 0%, #7c8cf8 45%, #a855f7 100%);
-            
             --bg-1: #eaf3ff;
             --bg-2: #f4eeff;
             --text: #1c1b2e;
@@ -25,13 +21,11 @@
             --glass-border: rgba(124,58,237,.18);
             --glass-shadow: 0 8px 24px rgba(80,60,180,.10);
             --accent: #7c3aed;
-            
             --danger: #ef4444;
             --success: #10b981;
             --modal-overlay: rgba(0, 0, 0, 0.5);
         }
 
-        /* ==================== ۲. متغیرهای رنگ تم تاریک (Dark Theme) ==================== */
         [data-theme="dark"] {
             --bg-1: #0d1024;
             --bg-2: #160f2b;
@@ -42,13 +36,11 @@
             --glass-border: rgba(168,133,255,.28);
             --glass-shadow: 0 8px 30px rgba(0,0,0,.45);
             --accent: #c084fc;
-            
             --danger: #f43f5e;
             --success: #10b981;
             --modal-overlay: rgba(0, 0, 0, 0.75);
         }
 
-        /* ==================== ۳. ریست و پس‌زمینه اصلی ==================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -65,7 +57,7 @@
                 linear-gradient(180deg, var(--bg-1), var(--bg-2));
             background-attachment: fixed;
             min-height: 100vh;
-            font-family: "Segoe UI", 'Vazirmatn', "Tahoma", Arial, sans-serif;
+            font-family: 'Vazirmatn', "Segoe UI", "Tahoma", Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             display: flex;
@@ -74,7 +66,6 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* ۴. خطوط شبکه‌ای (Grid) در پس‌زمینه */
         body::before {
             content: '';
             position: fixed;
@@ -92,7 +83,6 @@
                 linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
         }
 
-        /* ==================== ۵. کامپوننت‌های سفارشی ==================== */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -130,41 +120,36 @@
             box-shadow: 0 14px 30px rgba(124,58,237,.35);
         }
 
-        /* ==================== چیدمان برنامه ==================== */
         .app-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 15px; }
 
-        /* هدر (منوی بالا) */
         .header-bar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 15px; flex-wrap: wrap; gap: 10px;
         }
         .header-left { display: flex; align-items: center; gap: 10px; }
-        
-        /* منوی کشویی زبان (اصلاح شده) */
+
         .select-wrapper { position: relative; display: inline-block; }
         .lang-select {
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
             background: transparent; color: var(--text);
-            border: 1px solid var(--border); 
-            padding: 8px 12px 8px 32px; /* فاصله برای فلش */
+            border: 1px solid var(--border);
+            padding: 8px 12px 8px 32px;
             border-radius: 8px; font-family: inherit; font-size: 0.9rem;
             cursor: pointer; outline: none; transition: all 0.2s;
         }
         html[dir="ltr"] .lang-select { padding: 8px 32px 8px 12px; }
-        
+
         .lang-select:hover, .lang-select:focus { border-color: var(--accent); box-shadow: 0 0 10px var(--glass-border); }
         .lang-select option { background: var(--bg-1); color: var(--text); }
-        
-        /* فلش سفارشی منوی کشویی */
+
         .select-arrow {
             position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
             pointer-events: none; width: 14px; height: 14px; fill: var(--muted);
         }
         html[dir="ltr"] .select-arrow { left: auto; right: 10px; }
 
-        /* دکمه تم */
         .theme-toggle {
             background: transparent; border: 1px solid var(--border);
             color: var(--text); width: 38px; height: 38px;
@@ -173,7 +158,6 @@
         }
         .theme-toggle:hover { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--glass-border); }
 
-        /* دکمه دریافت لینک در هدر */
         .qr-header-btn {
             display: flex; align-items: center; gap: 6px;
             background: var(--gradient); color: #fff;
@@ -183,30 +167,24 @@
         }
         .qr-header-btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
 
-        /* ==================== نوار شبکه‌های اجتماعی ==================== */
-        .social-bar {
-            display: flex; gap: 10px; padding: 10px; border-radius: var(--radius);
-        }
+        .social-bar { display: flex; gap: 10px; padding: 10px; border-radius: var(--radius); }
         .social-item {
             flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
             padding: 12px 10px; border-radius: 10px; text-decoration: none;
             font-weight: bold; font-size: 0.9rem; transition: all 0.2s;
             border: 1px solid transparent;
         }
-        /* رنگ اختصاصی تلگرام */
         .social-item.tg { background: rgba(0, 136, 204, 0.1); color: #229ED9; border-color: rgba(34, 158, 217, 0.3); }
         .social-item.tg:hover { background: #0088cc; color: #fff; box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4); border-color: #0088cc; transform: translateY(-2px); }
-        /* رنگ اختصاصی اینستاگرام */
         .social-item.insta { background: linear-gradient(45deg, rgba(240, 148, 51, 0.1), rgba(188, 24, 136, 0.1)); color: #dc2743; border-color: rgba(220, 39, 67, 0.3); }
         .social-item.insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); border-color: transparent; transform: translateY(-2px); }
 
-        /* ==================== کارت وضعیت ==================== */
         .status-card { padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
         .status-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
         .status-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text); }
         .status-row span.label { color: var(--muted); }
         .status-row span.value { font-weight: bold; direction: ltr; }
-        
+
         .status-chart-container { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 120px; }
         .status-ring {
             width: 90px; height: 90px; border-radius: 50%;
@@ -218,7 +196,6 @@
         .status-ring-text { position: relative; z-index: 1; font-size: 1.1rem; font-weight: 800; color: var(--danger); }
         .status-badge { background: var(--success); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
 
-        /* ==================== آکاردئون ==================== */
         .accordion-group { display: flex; flex-direction: column; gap: 12px; }
         .accordion-item { overflow: hidden; }
         .accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; user-select: none; transition: background 0.2s; }
@@ -232,11 +209,9 @@
         .accordion-content { overflow: hidden; padding: 0 20px; transition: padding 0.3s ease; }
         .accordion-item.active .accordion-content { padding: 0 20px 20px 20px; }
 
-        /* تب‌ها و دکمه‌ها */
         .app-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
         .app-tab-btn { flex: 1; min-width: 100px; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
-        /* کارت‌های مراحل */
         .step-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.2s; }
         [data-theme="light"] .step-card { background: rgba(255, 255, 255, 0.4); }
         .step-card:hover { border-color: var(--accent); }
@@ -245,14 +220,13 @@
         .step-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
         .step-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
         .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
-        
+
         .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .btn-cyan { background: rgba(56, 189, 248, 0.15); color: var(--sky); border: 1px solid var(--sky); }
         .btn-cyan:hover { background: var(--sky); color: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
         .btn-purple { background: rgba(124, 58, 237, 0.15); color: var(--purple); border: 1px solid var(--purple); }
         .btn-purple:hover { background: var(--purple); color: #fff; box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
 
-        /* ==================== مودال ==================== */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--modal-overlay); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content { width: 90%; max-width: 400px; padding: 20px; position: relative; transform: translateY(20px); transition: transform 0.3s; }
@@ -267,7 +241,6 @@
         .modal-copy-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--gradient); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .modal-copy-btn:hover { opacity: 0.9; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
 
-        /* ==================== ریسپانسیو ==================== */
         @media (max-width: 600px) {
             .header-bar { flex-direction: column; align-items: stretch; }
             .header-left { justify-content: space-between; width: 100%; }
@@ -281,44 +254,36 @@
             .btn { width: 100%; justify-content: center; }
         }
 
-        /* آیکون‌ها */
         .icon { width: 20px; height: 20px; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        
-        <!-- هدر (منوی بالا) -->
         <div class="header-bar glass">
             <div class="header-left">
-                <!-- انتخاب زبان با فلش سفارشی -->
                 <div class="select-wrapper">
                     <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
                         <option value="fa">فارسی</option>
                         <option value="en">English</option>
                         <option value="ru">Русский</option>
                     </select>
-                    <!-- فلش منوی کشویی -->
                     <svg class="select-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
-                <!-- دکمه تم -->
                 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تغییر تم"></button>
             </div>
-            <!-- دکمه دریافت لینک -->
             <button class="qr-header-btn" onclick="openModal()">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                 <span data-i18n="get_link">دریافت لینک</span>
             </button>
         </div>
 
-        <!-- نوار شبکه‌های اجتماعی -->
         <div class="social-bar glass">
             <a href="https://t.me/YourBuyBot" target="_blank" class="social-item tg">
                 <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.47-.81-.26-1.45-.4-1.39-.85.03-.24.35-.49.96-.74 3.78-1.65 6.3-2.73 7.56-3.26 3.6-1.49 4.35-1.75 4.84-1.76.11 0 .35.02.51.14.13.1.17.24.18.34.01.11.01.24 0 .35z"/></svg>
                 <span data-i18n="buy_bot">خرید از ربات</span>
             </a>
-            
+
             <a href="https://instagram.com/YourInstagram" target="_blank" class="social-item insta">
                 <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 <span data-i18n="instagram">اینستاگرام</span>
@@ -330,7 +295,6 @@
             </a>
         </div>
 
-        <!-- کارت وضعیت -->
         <div class="status-card glass">
             <div class="status-info">
                 <div class="status-row">
@@ -354,7 +318,6 @@
             </div>
         </div>
 
-        <!-- آکاردئون راهنما -->
         <div class="accordion-group">
             <div class="accordion-item glass active" id="acc-guide">
                 <div class="accordion-header" onclick="toggleAccordion('acc-guide')">
@@ -373,10 +336,8 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- مودال دریافت لینک و QR Code -->
     <div class="modal-overlay" id="qrModal">
         <div class="modal-content glass">
             <div class="modal-header">
@@ -396,7 +357,7 @@
 
     <script>
         const SUB_LINK = "https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/Sup.txt";
-        
+
         const translations = {
             fa: {
                 traffic: "میزان استفاده:", unlimited: "نامحدود", expiry_date: "تاریخ پایان اشتراک:", days_left: "روزهای باقی‌مانده:", active: "فعال", get_link: "دریافت لینک",
@@ -471,13 +432,9 @@
         function applyTheme() {
             document.documentElement.setAttribute('data-theme', currentTheme);
             const icon = document.getElementById('themeBtn');
-            
-            // آیکون خورشید و ماه استاندارد و زیبا
             if (currentTheme === 'dark') {
-                // حالت تاریک فعال است، آیکون خورشید برای رفتن به روشن
                 icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
             } else {
-                // حالت روشن فعال است، آیکون ماه برای رفتن به تاریک
                 icon.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
             }
         }
@@ -491,12 +448,10 @@
             currentLang = lang;
             document.documentElement.lang = lang;
             document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
-            
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; }
             });
-
             updateDateAndStatus();
             renderOSSelector();
             renderAppTabs();
@@ -567,7 +522,7 @@
             let encodedSub = encodeURIComponent(SUB_LINK);
             let deepLink = `${app.scheme}${encodedSub}`;
             let addButtonAction = (currentOS === 'windows') ? `onclick="copySubLink(this)"` : `onclick="triggerDeepLink('${deepLink}')"`;
-            
+
             container.innerHTML = `
                 <div class="step-card"><div class="step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div><div class="step-content"><div class="step-title">${t.step1_title}</div><div class="step-desc">${t['step1_desc_' + (currentOS === 'ios' ? 'ios' : currentOS === 'windows' || currentOS === 'mac' ? 'win' : 'android')]}</div><div class="btn-group">${installButtons}</div></div></div>
                 <div class="step-card"><div class="step-icon" style="color:var(--purple)"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><div class="step-content"><div class="step-title">${t.step2_title}</div><div class="step-desc">${t.step2_desc}</div><div class="btn-group"><button class="btn btn-purple" ${addButtonAction}>${t.btn_add}</button></div></div></div>
@@ -599,7 +554,7 @@
             if (percentPassed > 100) percentPassed = 100;
 
             const expiryEl = document.getElementById('expiry-val');
-            if (currentLang === 'fa') { expiryEl.textContent = `${currentJYear}/12/${endDay}`; } 
+            if (currentLang === 'fa') { expiryEl.textContent = `${currentJYear}/12/${endDay}`; }
             else { expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }); }
 
             document.getElementById('days-val').textContent = daysLeft;
