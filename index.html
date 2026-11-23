@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,118 +9,180 @@
     <!-- کتابخانه تاریخ شمسی -->
     <script src="https://cdn.jsdelivr.net/npm/jalaali-js@1.1.5/dist/jalaali.min.js"></script>
     <style>
-        /* ==================== متغیرهای تم ==================== */
+        /* ==================== ۱. متغیرهای رنگ تم روشن (Light Theme) ==================== */
         :root {
-            --font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
-            /* تم تاریک (شب) */
-            --bg-body: #0a0f18;
-            --bg-pattern: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            --bg-card: #111827;
-            --bg-card-status: #1e293b; /* رنگ کارت وضعیت مشابه عکس */
-            --bg-card-hover: #1f2937;
-            --border-color: #2d3748;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-cyan: #06b6d4;
-            --accent-cyan-glow: rgba(6, 182, 212, 0.15);
-            --accent-purple: #8b5cf6;
-            --accent-purple-glow: rgba(139, 92, 246, 0.15);
-            --danger: #ef4444; /* رنگ قرمز برای دایره درصد */
+            --radius: 14px;
+            --sky: #38bdf8;
+            --purple: #7c3aed;
+            --gradient: linear-gradient(135deg, #38bdf8 0%, #7c8cf8 45%, #a855f7 100%);
+            
+            --bg-1: #eaf3ff;
+            --bg-2: #f4eeff;
+            --text: #1c1b2e;
+            --muted: #5f5c7d;
+            --border: rgba(124,58,237,.15);
+            --glass-bg: rgba(255,255,255,.55);
+            --glass-border: rgba(124,58,237,.18);
+            --glass-shadow: 0 8px 24px rgba(80,60,180,.10);
+            --accent: #7c3aed;
+            
+            --danger: #ef4444;
             --success: #10b981;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-            --modal-overlay: rgba(0, 0, 0, 0.75);
-        }
-
-        /* تم روشن (روز) */
-        [data-theme="light"] {
-            --bg-body: #f1f5f9;
-            --bg-pattern: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            --bg-card: #ffffff;
-            --bg-card-status: #f8fafc;
-            --bg-card-hover: #f1f5f9;
-            --border-color: #cbd5e1;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --accent-cyan: #0891b2;
-            --accent-cyan-glow: rgba(8, 145, 178, 0.15);
-            --accent-purple: #7c3aed;
-            --accent-purple-glow: rgba(124, 58, 237, 0.15);
-            --danger: #e11d48;
-            --success: #059669;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
             --modal-overlay: rgba(0, 0, 0, 0.5);
         }
 
-        /* ==================== ریست و پایه ==================== */
+        /* ==================== ۲. متغیرهای رنگ تم تاریک (Dark Theme) ==================== */
+        [data-theme="dark"] {
+            --bg-1: #0d1024;
+            --bg-2: #160f2b;
+            --text: #d1d5db;
+            --muted: #9ca3af;
+            --border: rgba(168,133,255,.22);
+            --glass-bg: rgba(255,255,255,.06);
+            --glass-border: rgba(168,133,255,.28);
+            --glass-shadow: 0 8px 30px rgba(0,0,0,.45);
+            --accent: #c084fc;
+            
+            --danger: #f43f5e;
+            --success: #10b981;
+            --modal-overlay: rgba(0, 0, 0, 0.75);
+        }
+
+        /* ==================== ۳. ریست و پس‌زمینه اصلی ==================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-1); }
+        ::-webkit-scrollbar-thumb { background: var(--gradient); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-body);
-            background-image: var(--bg-pattern);
-            background-size: 40px 40px;
-            color: var(--text-primary);
+            color: var(--text);
             line-height: 1.6;
+            background:
+                radial-gradient(1100px 500px at 15% -10%, rgba(56,189,248,.28), transparent 60%),
+                radial-gradient(900px 500px at 100% 0%, rgba(168,85,247,.24), transparent 55%),
+                linear-gradient(180deg, var(--bg-1), var(--bg-2));
+            background-attachment: fixed;
             min-height: 100vh;
+            font-family: "Segoe UI", 'Vazirmatn', "Tahoma", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             display: flex;
             justify-content: center;
             padding: 20px;
             transition: background-color 0.3s, color 0.3s;
         }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
-        /* ==================== کانتینر ==================== */
+        /* ۴. خطوط شبکه‌ای (Grid) در پس‌زمینه */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(to right, rgba(124, 58, 237, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        [data-theme="dark"] body::before {
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+        }
+
+        /* ==================== ۵. کامپوننت‌های سفارشی ==================== */
+
+        /* افکت شیشه‌ای (Glassmorphism) */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+            border-radius: var(--radius);
+        }
+
+        /* افکت هاله نئون (Neon Glow) */
+        .glass:hover, .glass:active {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+            border-color: rgba(168, 85, 247, 0.6);
+        }
+
+        /* گرادیانت متنی (برای تیترها) */
+        .text-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.4;
+            padding-bottom: 0.3rem;
+            display: inline-block;
+        }
+
+        /* کارت‌های انتخاب سیستم‌عامل */
+        .os-card {
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            cursor: pointer;
+        }
+        .os-card.selected {
+            background: var(--gradient);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 14px 30px rgba(124,58,237,.35);
+        }
+
+        /* ==================== چیدمان برنامه ==================== */
         .app-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 20px; }
 
         /* هدر */
         .header-bar {
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--bg-card); padding: 12px 20px; border-radius: 12px;
-            border: 1px solid var(--border-color); box-shadow: var(--shadow);
-            flex-wrap: wrap; gap: 10px;
+            padding: 12px 20px; flex-wrap: wrap; gap: 10px;
         }
         .header-actions { display: flex; align-items: center; gap: 10px; }
         
         /* منوی کشویی زبان */
         .lang-select {
-            background: var(--bg-body); color: var(--text-primary);
-            border: 1px solid var(--border-color); padding: 8px 12px;
+            background: transparent; color: var(--text);
+            border: 1px solid var(--border); padding: 8px 12px;
             border-radius: 8px; font-family: inherit; font-size: 0.9rem;
-            cursor: pointer; outline: none; transition: border-color 0.2s;
+            cursor: pointer; outline: none; transition: all 0.2s;
         }
-        .lang-select:hover, .lang-select:focus { border-color: var(--accent-cyan); }
+        .lang-select:hover, .lang-select:focus { border-color: var(--accent); box-shadow: 0 0 10px var(--glass-border); }
+        .lang-select option { background: var(--bg-1); color: var(--text); }
 
         /* دکمه تم */
         .theme-toggle {
-            background: var(--bg-body); border: 1px solid var(--border-color);
-            color: var(--text-secondary); width: 38px; height: 38px;
+            background: transparent; border: 1px solid var(--border);
+            color: var(--text); width: 38px; height: 38px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: all 0.2s;
         }
-        .theme-toggle:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--glass-border); }
 
         /* دکمه دریافت لینک (بالای صفحه) */
         .top-action-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 14px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
-            color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 12px;
-            cursor: pointer; box-shadow: 0 4px 15px var(--accent-purple-glow); transition: opacity 0.2s;
+            width: 100%; padding: 14px; background: var(--gradient);
+            color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: var(--radius);
+            cursor: pointer; box-shadow: 0 4px 15px rgba(124,58,237,.3); transition: all 0.2s;
         }
-        .top-action-btn:hover { opacity: 0.9; }
+        .top-action-btn:hover { opacity: 0.9; box-shadow: 0 0 25px rgba(168, 85, 247, 0.6); transform: translateY(-2px); }
 
-        /* ==================== کارت وضعیت (شبیه عکس دوم) ==================== */
+        /* ==================== کارت وضعیت ==================== */
         .status-card {
-            background: var(--bg-card-status);
-            border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: var(--shadow); gap: 15px;
+            padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px;
         }
         .status-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
-        .status-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-primary); }
-        .status-row span.label { color: var(--text-secondary); }
+        .status-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text); }
+        .status-row span.label { color: var(--muted); }
         .status-row span.value { font-weight: bold; direction: ltr; }
         
         .status-chart-container { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 120px; }
@@ -128,30 +190,29 @@
             width: 90px; height: 90px; border-radius: 50%;
             background: conic-gradient(var(--danger) 0%, transparent 0);
             display: flex; justify-content: center; align-items: center;
-            position: relative;
+            position: relative; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
         }
         .status-ring::before {
             content: ''; position: absolute; width: 74px; height: 74px;
-            background: var(--bg-card-status); border-radius: 50%;
+            background: var(--bg-1); border-radius: 50%;
         }
         .status-ring-text { position: relative; z-index: 1; font-size: 1.1rem; font-weight: 800; color: var(--danger); }
         .status-badge {
             background: var(--success); color: #fff; padding: 4px 12px;
-            border-radius: 20px; font-size: 0.75rem; font-weight: bold;
+            border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
         }
 
         /* ==================== آکاردئون ==================== */
         .accordion-group { display: flex; flex-direction: column; gap: 12px; }
-        .accordion-item {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; overflow: hidden; transition: border-color 0.2s;
-        }
-        .accordion-item:hover { border-color: var(--accent-cyan); }
+        .accordion-item { overflow: hidden; }
         .accordion-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 20px; cursor: pointer; background: var(--bg-card); user-select: none;
+            padding: 16px 20px; cursor: pointer; user-select: none;
+            transition: background 0.2s;
         }
-        .accordion-header:hover { background: var(--bg-card-hover); }
+        .accordion-header:hover { background: rgba(255,255,255,0.05); }
+        [data-theme="light"] .accordion-header:hover { background: rgba(0,0,0,0.03); }
+        
         .accordion-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; }
         .accordion-icon { transition: transform 0.3s; }
         .accordion-item.active .accordion-icon { transform: rotate(180deg); }
@@ -163,82 +224,87 @@
         /* تب‌ها و دکمه‌ها */
         .app-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
         .app-tab-btn {
-            flex: 1; min-width: 100px; background: var(--bg-body); border: 1px solid var(--border-color);
-            color: var(--text-secondary); padding: 10px; border-radius: 8px;
-            cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: bold;
-            display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;
+            flex: 1; min-width: 100px; padding: 10px; font-family: inherit; font-size: 0.9rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 6px; 
         }
-        .app-tab-btn.active { background: var(--bg-card); border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
         /* کارت‌های مراحل */
         .step-card {
-            background: var(--bg-body); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 16px; margin-bottom: 12px;
-            display: flex; align-items: flex-start; gap: 15px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+            display: flex; align-items: flex-start; gap: 15px; transition: all 0.2s;
         }
-        .step-icon { color: var(--accent-cyan); }
+        [data-theme="light"] .step-card { background: rgba(255, 255, 255, 0.4); }
+        .step-card:hover { border-color: var(--accent); }
+        
+        .step-icon { color: var(--sky); }
         .step-content { flex: 1; }
         .step-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
-        .step-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; }
+        .step-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
         .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        
         .btn {
             display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
-            border-radius: 6px; font-family: inherit; font-size: 0.85rem; font-weight: 600;
+            border-radius: 8px; font-family: inherit; font-size: 0.85rem; font-weight: 600;
             cursor: pointer; text-decoration: none; transition: all 0.2s;
         }
-        .btn-cyan { background: var(--accent-cyan-glow); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
-        .btn-cyan:hover { background: var(--accent-cyan); color: #fff; }
-        .btn-purple { background: var(--accent-purple-glow); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
-        .btn-purple:hover { background: var(--accent-purple); color: #fff; }
+        .btn-cyan { background: rgba(56, 189, 248, 0.15); color: var(--sky); border: 1px solid var(--sky); }
+        .btn-cyan:hover { background: var(--sky); color: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        .btn-purple { background: rgba(124, 58, 237, 0.15); color: var(--purple); border: 1px solid var(--purple); }
+        .btn-purple:hover { background: var(--purple); color: #fff; box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
 
         /* ==================== شبکه‌های اجتماعی ==================== */
         .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 10px; }
         .social-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px; border-radius: 10px; text-decoration: none;
-            font-weight: bold; font-size: 0.9rem; transition: transform 0.2s, opacity 0.2s;
+            padding: 12px; border-radius: var(--radius); text-decoration: none;
+            font-weight: bold; font-size: 0.9rem; transition: all 0.2s;
+            border: 1px solid transparent;
         }
-        .social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-        .btn-telegram-bot { background: #0088cc; color: #fff; }
-        .btn-telegram-chan { background: #229ED9; color: #fff; }
-        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+        .social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .btn-telegram-bot { background: rgba(0, 136, 204, 0.15); color: #0088cc; border-color: rgba(0, 136, 204, 0.4); }
+        .btn-telegram-bot:hover { background: #0088cc; color: #fff; }
+        .btn-telegram-chan { background: rgba(34, 158, 217, 0.15); color: #229ED9; border-color: rgba(34, 158, 217, 0.4); }
+        .btn-telegram-chan:hover { background: #229ED9; color: #fff; }
+        .btn-instagram { background: rgba(220, 39, 67, 0.15); color: #dc2743; border-color: rgba(220, 39, 67, 0.4); }
+        .btn-instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 
         /* ==================== مودال (پنجره بارکد) ==================== */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--modal-overlay); display: flex; justify-content: center; align-items: center;
+            background: var(--modal-overlay); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
             z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 16px; width: 90%; max-width: 400px; padding: 20px;
-            box-shadow: var(--shadow); position: relative; transform: translateY(20px); transition: transform 0.3s;
+            width: 90%; max-width: 400px; padding: 20px;
+            position: relative; transform: translateY(20px); transition: transform 0.3s;
         }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .modal-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
         }
         .modal-title { font-weight: bold; font-size: 1.1rem; }
         .modal-close {
-            background: transparent; border: none; color: var(--text-secondary);
+            background: transparent; border: none; color: var(--muted);
             cursor: pointer; font-size: 1.5rem; line-height: 1; padding: 5px;
         }
         .modal-close:hover { color: var(--danger); }
         .qr-container {
             display: flex; justify-content: center; align-items: center;
-            background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px;
+            background: #fff; padding: 15px; border-radius: var(--radius); margin-bottom: 15px;
         }
         .qr-container img { width: 100%; max-width: 200px; height: auto; display: block; }
-        .modal-desc { text-align: center; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
+        .modal-desc { text-align: center; font-size: 0.85rem; color: var(--muted); margin-bottom: 15px; }
         .modal-copy-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 12px; background: var(--accent-cyan); color: #fff;
+            width: 100%; padding: 12px; background: var(--gradient); color: #fff;
             border: none; border-radius: 8px; font-family: inherit; font-size: 1rem;
-            font-weight: bold; cursor: pointer; transition: background 0.2s;
+            font-weight: bold; cursor: pointer; transition: all 0.2s;
         }
-        .modal-copy-btn:hover { background: #0891b2; }
+        .modal-copy-btn:hover { opacity: 0.9; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
 
         /* ==================== ریسپانسیو ==================== */
         @media (max-width: 600px) {
@@ -259,7 +325,7 @@
     <div class="app-container">
         
         <!-- هدر: انتخاب زبان و تم -->
-        <div class="header-bar">
+        <div class="header-bar glass">
             <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
                 <option value="fa">فارسی</option>
                 <option value="en">English</option>
@@ -278,8 +344,8 @@
             دریافت لینک اشتراک (QR Code)
         </button>
 
-        <!-- کارت وضعیت (شبیه عکس دوم) -->
-        <div class="status-card">
+        <!-- کارت وضعیت -->
+        <div class="status-card glass">
             <div class="status-info">
                 <div class="status-row">
                     <span class="label" data-i18n="traffic">میزان استفاده:</span>
@@ -304,18 +370,18 @@
 
         <!-- آکاردئون راهنما -->
         <div class="accordion-group">
-            <div class="accordion-item active" id="acc-guide">
+            <div class="accordion-item glass active" id="acc-guide">
                 <div class="accordion-header" onclick="toggleAccordion('acc-guide')">
                     <div class="accordion-title">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span data-i18n="guide_title">راهنمای اتصال</span>
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--sky);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <span class="text-gradient" data-i18n="guide_title">راهنمای اتصال</span>
                     </div>
                     <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
                         <!-- انتخاب سیستم‌عامل -->
-                        <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center;"></div>
+                        <div id="os-selector" style="margin-bottom: 15px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;"></div>
                         <!-- انتخاب اپلیکیشن -->
                         <div class="app-tabs" id="app-tabs"></div>
                         <!-- کارت‌های مراحل -->
@@ -327,11 +393,11 @@
 
         <!-- بخش پشتیبانی و شبکه‌های اجتماعی -->
         <div class="accordion-group">
-            <div class="accordion-item active" id="acc-social">
+            <div class="accordion-item glass active" id="acc-social">
                 <div class="accordion-header" onclick="toggleAccordion('acc-social')">
                     <div class="accordion-title">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        <span data-i18n="support_title">پشتیبانی و ارتباط با ما</span>
+                        <svg class="icon" viewBox="0 0 24 24" style="color: var(--purple);"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                        <span class="text-gradient" data-i18n="support_title">پشتیبانی و ارتباط با ما</span>
                     </div>
                     <div class="accordion-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></div>
                 </div>
@@ -359,13 +425,12 @@
 
     <!-- مودال دریافت لینک و QR Code -->
     <div class="modal-overlay" id="qrModal">
-        <div class="modal-content">
+        <div class="modal-content glass">
             <div class="modal-header">
-                <span class="modal-title" data-i18n="modal_title">دریافت لینک</span>
+                <span class="modal-title text-gradient" data-i18n="modal_title">دریافت لینک</span>
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="qr-container">
-                <!-- تصویر QR Code از API گوگل تولید می‌شود -->
                 <img id="qrImage" src="" alt="QR Code">
             </div>
             <p class="modal-desc" data-i18n="modal_desc">کد QR بالا را در کلاینت اسکن کنید. همچنین می‌توانید لینک زیر را کپی کرده و در کلاینت خود قرار دهید.</p>
@@ -496,11 +561,10 @@
 
         // ==================== ۵. توابع اصلی ====================
 
-        // تشخیص تم خودکار (سیستم‌عامل یا ساعت)
         function initTheme() {
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const hour = new Date().getHours();
-            const isNightTime = (hour >= 18 || hour < 6); // 6 شب تا 6 صبح
+            const isNightTime = (hour >= 18 || hour < 6);
 
             if (prefersDark || (!window.matchMedia && isNightTime)) {
                 currentTheme = 'dark';
@@ -510,7 +574,6 @@
             applyTheme();
         }
 
-        // اعمال تم
         function applyTheme() {
             document.documentElement.setAttribute('data-theme', currentTheme);
             const icon = document.getElementById('themeBtn');
@@ -521,13 +584,11 @@
             }
         }
 
-        // تغییر دستی تم
         function toggleTheme() {
             currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
             applyTheme();
         }
 
-        // تغییر زبان
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
@@ -540,18 +601,16 @@
                 }
             });
 
-            updateDateAndStatus(); // آپدیت تاریخ
+            updateDateAndStatus();
             renderOSSelector();
             renderAppTabs();
             renderSteps();
         }
 
-        // باز/بسته کردن آکاردئون
         function toggleAccordion(id) {
             document.getElementById(id).classList.toggle('active');
         }
 
-        // تشخیص سیستم‌عامل
         function detectOS() {
             const ua = navigator.userAgent.toLowerCase();
             if (ua.includes('android')) return 'android';
@@ -561,10 +620,9 @@
             return 'android';
         }
 
-        // نمایش پیام (Toast)
         function showToast(msg) {
             const toast = document.createElement('div');
-            toast.style.cssText = `position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent-cyan); color:#fff; padding:10px 20px; border-radius:8px; z-index:9999; font-family:inherit; font-weight:bold; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s;`;
+            toast.style.cssText = `position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--gradient); color:#fff; padding:12px 24px; border-radius:12px; z-index:9999; font-family:inherit; font-weight:bold; box-shadow:0 8px 25px rgba(168, 85, 247, 0.4); transition: opacity 0.3s;`;
             toast.textContent = msg;
             document.body.appendChild(toast);
             setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
@@ -573,10 +631,8 @@
         // ==================== ۶. مودال و QR Code ====================
         
         function openModal() {
-            // تولید QR Code با استفاده از API رایگان
             const qrImg = document.getElementById('qrImage');
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(SUB_LINK)}&color=06b6d4&bgcolor=ffffff`;
-            
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(SUB_LINK)}&color=7c3aed&bgcolor=ffffff`;
             document.getElementById('qrModal').classList.add('active');
         }
 
@@ -592,7 +648,6 @@
             });
         }
 
-        // بستن مودال با کلیک بیرون از آن
         document.getElementById('qrModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
@@ -611,7 +666,7 @@
             ];
 
             container.innerHTML = osList.map(os => `
-                <button class="app-tab-btn ${os.id === currentOS ? 'active' : ''}" onclick="switchOS('${os.id}')">
+                <button class="app-tab-btn os-card ${os.id === currentOS ? 'selected' : ''}" onclick="switchOS('${os.id}')">
                     ${os.icon} ${translations[currentLang][os.labelKey]}
                 </button>
             `).join('');
@@ -627,7 +682,7 @@
             }
 
             container.innerHTML = apps.map(app => `
-                <button class="app-tab-btn ${app.id === currentApp ? 'active' : ''}" onclick="switchApp('${app.id}')">
+                <button class="app-tab-btn os-card ${app.id === currentApp ? 'selected' : ''}" onclick="switchApp('${app.id}')">
                     ${app.icon} ${app.name}
                 </button>
             `).join('');
@@ -670,7 +725,7 @@
                 </div>
 
                 <div class="step-card">
-                    <div class="step-icon" style="color:var(--accent-purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></div>
+                    <div class="step-icon" style="color:var(--purple)"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></div>
                     <div class="step-content">
                         <div class="step-title">${t.step2_title}</div>
                         <div class="step-desc">${t.step2_desc}</div>
@@ -712,24 +767,15 @@
         // ==================== ۹. محاسبه تاریخ (پایان سال) ====================
         function updateDateAndStatus() {
             const now = new Date();
-            
-            // تبدیل تاریخ امروز به شمسی برای پیدا کردن سال جاری
             let jNow = jalaali.toJalaali(now.getFullYear(), now.getMonth() + 1, now.getDate());
             let currentJYear = jNow.jy;
-
-            // آیا سال جاری کبیسه است؟ (برای تعیین 29 یا 30 اسفند)
             let isLeap = jalaali.isLeapJalaaliYear(currentJYear);
             let endDay = isLeap ? 30 : 29;
-
-            // تبدیل پایان سال شمسی به میلادی
             let endOfYearG = jalaali.toGregorian(currentJYear, 12, endDay);
             let expiryDate = new Date(endOfYearG.gy, endOfYearG.gm - 1, endOfYearG.gd, 23, 59, 59);
-            
-            // تاریخ شروع سال شمسی جاری
             let startOfYearG = jalaali.toGregorian(currentJYear, 1, 1);
             let startDate = new Date(startOfYearG.gy, startOfYearG.gm - 1, startOfYearG.gd);
 
-            // محاسبات روزها
             const timeDiffExpiry = expiryDate.getTime() - now.getTime();
             let daysLeft = Math.ceil(timeDiffExpiry / (1000 * 3600 * 24));
             if (daysLeft < 0) daysLeft = 0;
@@ -737,12 +783,10 @@
             const timeDiffTotal = expiryDate.getTime() - startDate.getTime();
             const timeDiffPassed = now.getTime() - startDate.getTime();
             
-            // درصد سپری شده (اگر تاریخ امروز قبل از شروع سال باشد، 0 است)
             let percentPassed = Math.floor((timeDiffPassed / timeDiffTotal) * 100);
             if (percentPassed < 0) percentPassed = 0;
             if (percentPassed > 100) percentPassed = 100;
 
-            // نمایش تاریخ انقضا
             const expiryEl = document.getElementById('expiry-val');
             if (currentLang === 'fa') {
                 expiryEl.textContent = `${currentJYear}/12/${endDay}`;
@@ -751,34 +795,30 @@
                 expiryEl.textContent = expiryDate.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'en-US', options);
             }
 
-            // نمایش روزهای باقی‌مانده
             document.getElementById('days-val').textContent = daysLeft;
-
-            // نمایش حجم
             document.getElementById('traffic-val').textContent = translations[currentLang].unlimited;
 
-            // آپدیت دایره درصد
             document.getElementById('ring-text').textContent = `${percentPassed}%`;
             const ring = document.getElementById('status-ring');
-            // استفاده از رنگ قرمز برای دایره مشابه عکس
             ring.style.background = `conic-gradient(var(--danger) ${percentPassed}%, transparent 0)`;
         }
 
         // ==================== ۱۰. شروع برنامه ====================
         window.onload = function() {
-            initTheme(); // تنظیم تم شب/روز
+            initTheme();
             currentOS = detectOS();
             
             if (appsData[currentOS] && appsData[currentOS].length > 0) {
                 currentApp = appsData[currentOS][0].id;
             }
 
-            setLanguage('fa'); // تنظیم زبان پیش‌فرض
+            setLanguage('fa');
             
             renderOSSelector();
-            updateDateAndStatus(); // محاسبه تاریخ پایان سال
+            updateDateAndStatus();
             
             document.getElementById('acc-guide').classList.add('active');
+            document.getElementById('acc-social').classList.add('active');
         };
     </script>
 </body>
