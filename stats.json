@@ -1,7 +1,11 @@
 {
+  "updatedAt": "2026-11-24T13:29:02.504Z",
+  "configCount": 240,
+  "meteredCount": 0,
   "isUnlimited": true,
   "totalBytes": 0,
   "usedBytes": 0,
-  "remainingPercent": 100,
-  "usedPercent": 0
+  "remainingBytes": 0,
+  "usedPercent": 0,
+  "remainingPercent": 100
 }
