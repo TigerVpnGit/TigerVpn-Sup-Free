@@ -2,75 +2,71 @@
 
 # 🐯 TigerVpn-Sup-Free
 
-**سابکریپشن رایگان، پرسرعت و به‌روز برای اینترنت آزاد**
+**لینک‌ها و کانفیگ‌های رایگان و به‌روز برای کلاینت‌های Hiddify، V2Ray و سایر برنامه‌های تونل**
 
-[![Stars](https://img.shields.io/github/stars/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge&color=yellow)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge&color=green)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/commits/main)
-[![Size](https://img.shields.io/github/repo-size/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge&color=blue)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free)
-[![License](https://img.shields.io/github/license/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge&color=red)](LICENSE)
-
-<br />
-
-<a href="https://github.com/TigerVpnGit/TigerVpn-Sup-Free/stargazers">
-  <img src="https://img.shields.io/badge/⭐%20Star%20This%20Repo-If%20It%20Helped%20You-1f2937?style=for-the-badge&logo=github" alt="Star this repo" />
-</a>
+[![GitHub Stars](https://img.shields.io/github/stars/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/network/members)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/TigerVpnGit/TigerVpn-Sup-Free?style=for-the-badge)](https://github.com/TigerVpnGit/TigerVpn-Sup-Free/commits/main)
 
 </div>
 
 ---
-
-<div dir="rtl">
 
 ## 📌 درباره پروژه
-مخزن **TigerVpn-Sup-Free** یک منبع متن‌باز برای دسترسی به کانفیگ‌های رایگان و تست‌شده (V2Ray / Xray) است. هدف ما ارائه‌ی سابکریپشن‌های پایدار و پرسرعت است تا کاربران بدون دغدغه بتوانند از اینترنت آزاد استفاده کنند. 
 
-کانفیگ‌ها به صورت منظم بررسی و به‌روزرسانی می‌شوند تا همیشه جدیدترین و بهترین سرورها در اختیار شما باشد.
+**TigerVpn-Sup-Free** مجموعه‌ای از لینک‌های اشتراک (Subscription) و کانفیگ‌های رایگان است که برای استفاده در **Hiddify** و سایر کلاینت‌های محبوب ارائه می‌شوند. هدف این مخزن فراهم کردن دسترسی سریع و ساده برای کاربرانی است که به دنبال کانفیگ‌های آزمایشی یا عمومی هستند.
 
-## ✨ ویژگی‌های پروژه
-- 🔄 **به‌روزرسانی خودکار:** سرورها به صورت مداوم تست شده و کانفیگ‌های خراب حذف می‌شوند.
-- ⚡ **پرسرعت و پایدار:** تمرکز اصلی بر روی کیفیت و پینگ پایین سرورهاست.
-- 📱 **سازگار با تمام کلاینت‌ها:** بدون نیاز به تنظیمات پیچیده، فقط کپی و متصل شوید.
-- 🆓 **کاملاً رایگان:** بدون هیچ‌گونه محدودیت یا هزینه‌ای.
+> ⚠️ **توجه:** کانفیگ‌های رایگان ماهیت عمومی و ناپایدار دارند؛ سرعت، پینگ و پایداری آن‌ها بسته به شرایط شبکه و میزان استفاده کاربران تغییر می‌کند.
 
 ---
 
-## 🚀 راهنمای استفاده (Quick Start)
+## 🔗 لینک‌های اشتراک (Subscription)
 
-برای استفاده از سابکریپشن، مراحل زیر را دنبال کنید:
+لینک‌های زیر را کپی کرده و در بخش **Subscription / اشتراک** برنامه خود وارد کنید:
 
-1. **دانلود کلاینت:** ابتدا یکی از نرم‌افزارهای زیر را بر اساس سیستم‌عامل خود نصب کنید.
-2. **کپی لینک:** به فایل [`Sup.txt`](./Sup.txt) بروید و لینک (یا محتوای) آن را کپی کنید.
-3. **افزودن به کلاینت:** در برنامه، گزینه‌ی `Import from Clipboard` یا `Add Subscription` را انتخاب کنید.
-4. **اتصال:** دکمه‌ی اتصال (Connect / Ping) را بزنید و لذت ببرید! 🎉
+| نوع لینک | وضعیت | آدرس اشتراک |
+| :--- | :---: | :--- |
+| **اشتراک عمومی (Hiddify / عمومی)** | فعال | `https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/...` |
+| **اشتراک تک‌پروتکل / ویژه** | در حال به‌روزرسانی | `https://raw.githubusercontent.com/TigerVpnGit/TigerVpn-Sup-Free/main/...` |
 
-### 📱 نرم‌افزارهای پیشنهادی
-
-| سیستم‌عامل | نرم‌افزار پیشنهادی | لینک دانلود |
-| :--- | :--- | :--- |
-| **Android** | v2rayNG / NekoBox | [دانلود از گیت‌هاب](https://github.com/2dust/v2rayNG) |
-| **Windows** | V2RayN / Nekoray | [دانلود از گیت‌هاب](https://github.com/2dust/v2rayN) |
-| **iOS (آیفون)** | Streisand / Shadowrocket | [App Store](https://apps.apple.com/) |
-| **macOS / Linux** | V2RayX / Nekoray | [دانلود از گیت‌هاب](https://github.com/MatsuriDayo/nekoray) |
+> 💡 **نکته:** مسیر دقیق فایل‌های داخل مخزن را با نام واقعی فایل‌های خود (مثلاً `sub.txt` یا `hiddify.json`) جایگزین کنید.
 
 ---
 
-## ⚠️ سلب مسئولیت (Disclaimer)
+## 📱 راهنمای استفاده در برنامه‌ها
 
-> این پروژه صرفاً برای اهداف آموزشی و دسترسی آزاد به اطلاعات منتشر شده است. سرورها از منابع عمومی اینترنت جمع‌آوری می‌شوند. 
-> استفاده از این کانفیگ‌ها برای فعالیت‌های غیرقانونی یا تجاری ممنوع است و مسئولیت هرگونه استفاده نادرست بر عهده‌ی کاربر است. لطفاً از این سرویس‌ها به صورت منصفانه استفاده کنید.
+### ۱. Hiddify (اندروید، iOS، ویندوز، مک و لینوکس)
+1. برنامه **Hiddify** را باز کنید.
+2. روی علامت **`+`** یا گزینه **New Profile / پروفایل جدید** بزنید.
+3. آدرس لینک اشتراک (Subscription) را جایصاری/جایگذاری کنید و یک نام دلخواه (مثلاً `TigerVpn Free`) بدهید.
+4. گزینه **Add / افزودن** را بزنید و پس از دریافت پروفایل، اتصال را برقرار کنید.
+
+### ۲. سایر کلاینت‌های محبوب
+* **v2rayNG (اندروید):** از منوی بالا سمت چپ وارد `Subscription group settings` شوید، لینک را اضافه کنید و سپس گزینه `Update subscription` را بزنید.
+* **v2rayN (ویندوز):** از منوی `Subscription` گزینه `Subscription setting` را باز کنید، لینک را وارد کرده و `Update subscription` را بزنید.
+* **Streisand (iOS / macOS):** لینک اشتراک را کپی کنید؛ برنامه معمولاً به صورت خودکار آن را شناسایی می‌کند یا از طریق گزینه `+` قابل افزودن است.
+* **NekoBox / Nekoray:** پروفایل جدید از نوع `Subscription` بسازید و آدرس را وارد کنید.
 
 ---
 
-## 🤝 مشارکت و حمایت
+## 🛡️ نکات امنیتی و اخلاقی
 
-اگر این پروژه برایتان مفید بود، راه‌های زیر برای حمایت از ما وجود دارد:
-- 🌟 دادن **ستاره (Star)** به این مخزن (بالا سمت راست کلیک کنید).
-- 🐛 گزارش مشکلات یا سرورهای خراب از طریق بخش **Issues**.
-- 🔀 ارسال کانفیگ‌های جدید از طریق **Pull Request**.
+* از این کانفیگ‌ها برای فعالیت‌های حساس مالی یا شخصی مهم استفاده نکنید؛ در شبکه‌های عمومی همیشه احتیاط کنید.
+* این مخزن صرفاً برای **اهداف آموزشی، تست اتصال و دسترسی آزاد به اطلاعات** نگهداری می‌شود.
+* لطفاً از سوءاستفاده، حملات مخرب یا ایجاد بار غیرمجاز روی منابع عمومی خودداری کنید.
+
+---
+
+## 🤝 مشارکت و پشتیبانی
+
+اگر کانفیگ سالمی می‌شناسید، باگی پیدا کرده‌اید یا پیشنهادی برای بهبود ساختار مخزن دارید:
+* یک **Issue** جدید ثبت کنید، یا
+* با **Pull Request** تغییرات خود را ارسال کنید.
+
+اگر این مخزن برایتان مفید بود، با دادن **⭐ Star** از پروژه حمایت کنید.
+
+---
 
 <div align="center">
-  <br />
-  <b>ساخته شده با ❤️ برای اینترنت آزاد</b>
-</div>
-
+ساخته‌شده با ❤️ توسط <b>TigerVpnGit</b>
 </div>
