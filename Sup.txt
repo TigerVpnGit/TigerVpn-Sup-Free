@@ -1,5 +1,5 @@
 #profile-title: 🆔 @TigerVpnChannel
-#profile-update-interval: 1
+
 
 #support-url: https://t.me/TigerVpnChannel
 #profile-web-page-url: https://supfree.tigervpn-gmail.workers.dev/
